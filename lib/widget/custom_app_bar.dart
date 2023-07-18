@@ -50,11 +50,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: backgroundColor ?? theme.backgroundColor,
         leading: showLeading == false
             ? null
-            : (leading ??
-                const CustomAppBarIconButton(
-                  padding: EdgeInsets.only(left: AppValues.defaultPadding),
-                  style: CustomAppBarIconStyle.back,
-                )),
+            : (leading ?? const CustomAppBarIconButton()),
         leadingWidth: leadingWidth,
         elevation: elevation,
         actions: actions,

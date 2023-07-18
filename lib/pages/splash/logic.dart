@@ -18,29 +18,25 @@ class SplashLogic extends BaseController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
-    onFinish();
-    return;
-
-    // showPrivacyDialog();
+    // onFinish();
+    // return;
+    showPrivacyDialog();
   }
 
-  void showPrivacyDialog() async {
+  Future<void> showPrivacyDialog() async {
     final isPass = await PrivacyPolicyService.checkStatus();
     if (kDebugMode) {
       print("隐私协议弹窗状态：$isPass");
     }
-    if(isPass) {
+    if (isPass) {
       onFinish();
-    } else {
-      Get.dialog(CustomConfirmDialog(
-          content: '不同意隐私协议无法使用App，确认退出吗？',
-          onConfirm: () => exit(0),
-          onCancel: () => showPrivacyDialog()
-      ));
+      return;
     }
+    Get.dialog(CustomConfirmDialog(
+        content: '不同意隐私协议无法使用App，确认退出吗？',
+        onConfirm: () => exit(0),
+        onCancel: () => showPrivacyDialog()));
   }
 
   void _delayedLoad() async {}
-
-
 }

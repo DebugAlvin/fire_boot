@@ -14,7 +14,7 @@ class CustomAppBarIconButton extends StatelessWidget {
     this.isDark,
     this.miniSize = 18,
     this.onPressed,
-    this.alignment = Alignment.centerLeft,
+    this.alignment = Alignment.center,
     this.style = CustomAppBarIconStyle.back,
     this.maxWidth = 44,
     this.maxHeight = 44,

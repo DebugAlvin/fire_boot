@@ -15,7 +15,11 @@ class FindPage extends BaseView<FindLogic> {
   @override
   Widget buildBody(BuildContext context) {
     // TODO: implement buildBody
-    return Container();
+    // return CustomAppBar(backgroundColor: Colors.black.withOpacity(0),);
+    return Stack(
+      children: [
+        CustomAppBar(backgroundColor: Colors.white),
+      ],
+    );
   }
-
 }

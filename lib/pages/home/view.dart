@@ -24,7 +24,12 @@ class HomePage extends BaseView<HomeLogic> {
             onPressed: (){
               RouteUtil.pushToView(Routes.matchDetailPage);
             },
-            child: const Text('点击下一页')),
+            child: const Text('点击下一页（正常导航栏）')),
+        CustomButton(
+            onPressed: (){
+              RouteUtil.pushToView(Routes.matchDetailPage);
+            },
+            child: const Text('点击下一页（透明导航栏）')),
       ],
     );
   }
