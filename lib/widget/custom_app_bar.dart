@@ -1,7 +1,7 @@
-import 'package:fire_boot/widget/custom_close_button.dart';
+import 'package:fire_boot/constant/app_values.dart';
+import 'package:fire_boot/widget/custom_app_bar_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fire_boot/services/theme_service.dart';
 
 //Default appbar customized with the design of our app
@@ -48,10 +48,15 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       child: AppBar(
         iconTheme: theme.iconTheme,
         backgroundColor: backgroundColor ?? theme.backgroundColor,
-        leading: leading ?? const CustomCloseButton(style: CustomCloseButtonStyle.outlined,),
+        leading: showLeading == false
+            ? null
+            : (leading ??
+                const CustomAppBarIconButton(
+                  padding: EdgeInsets.only(left: AppValues.defaultPadding),
+                  style: CustomAppBarIconStyle.back,
+                )),
         leadingWidth: leadingWidth,
         elevation: elevation,
-        automaticallyImplyLeading: showLeading,
         actions: actions,
         titleSpacing: titleSpacing,
         centerTitle: true,
@@ -62,9 +67,5 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             ),
       ),
     );
-  }
-
-  static fillHeight(BuildContext context) {
-    return AppBar().preferredSize.height + MediaQuery.of(context).padding.top;
   }
 }

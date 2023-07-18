@@ -1,5 +1,5 @@
 enum AppFont {
-  nomal,
+  normal,
   roboto,
 }
 
@@ -8,7 +8,7 @@ extension AppFontExtension on AppFont {
 
   String get bold {
     switch (this) {
-      case AppFont.nomal:
+      case AppFont.normal:
         return 'bold';
       case AppFont.roboto:
         return 'Roboto-Bold';
@@ -17,14 +17,14 @@ extension AppFontExtension on AppFont {
     }
   }
 
-  String get rgular {
+  String get regular {
     switch (this) {
-      case AppFont.nomal:
-        return 'rgular';
+      case AppFont.normal:
+        return 'regular';
       case AppFont.roboto:
         return 'Roboto-Regular';
       default:
-        return 'rgular';
+        return 'regular';
     }
   }
 

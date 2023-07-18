@@ -147,7 +147,6 @@ flutter:
   # 参考文档： https://github.com/flutterchina/flutter-in-action/blob/master/docs/chapter2/flutter_assets_mgr.md
   assets:
     - assets/images/
-    - assets/emoji/
     - assets/svg/
     - assets/lottie/
   #    - assets/lottie/gift/

@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fire_boot/services/theme_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import 'custom_button.dart';
 
-enum CustomCloseButtonStyle {
-  nomal,
-  outlined,
+enum CustomAppBarIconStyle {
+  back,
+  close,
 }
 
-class CustomCloseButton extends StatelessWidget {
-  const CustomCloseButton({
+class CustomAppBarIconButton extends StatelessWidget {
+  const CustomAppBarIconButton({
     Key? key,
     this.isDark,
-    this.miniSize = 13,
+    this.miniSize = 18,
     this.onPressed,
     this.alignment = Alignment.centerLeft,
-    this.style = CustomCloseButtonStyle.nomal,
+    this.style = CustomAppBarIconStyle.back,
     this.maxWidth = 44,
     this.maxHeight = 44,
-    this.color = Colors.white,
+    this.color = Colors.black,
     this.padding = EdgeInsets.zero,
   }) : super(key: key);
   final bool? isDark;
@@ -28,14 +27,13 @@ class CustomCloseButton extends StatelessWidget {
   final double? maxHeight;
   final VoidCallback? onPressed;
   final AlignmentGeometry? alignment;
-  final CustomCloseButtonStyle? style;
+  final CustomAppBarIconStyle? style;
   final Color? color;
   final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    // ic_close_outlined
     return CustomButton(
       width: maxWidth,
       height: maxHeight,
@@ -60,8 +58,8 @@ class CustomCloseButton extends StatelessWidget {
   }
 
   String get _assetName {
-    return style == CustomCloseButtonStyle.outlined
+    return style == CustomAppBarIconStyle.close
         ? 'assets/svg/ic_close_outlined.svg'
-        : 'assets/svg/ic_namal_back.svg';
+        : 'assets/svg/ic_normal_back.svg';
   }
 }

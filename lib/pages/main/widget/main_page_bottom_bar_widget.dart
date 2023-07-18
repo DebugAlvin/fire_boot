@@ -79,7 +79,7 @@ class _MainPageBottomBarWidgetState extends State<MainPageBottomBarWidget> {
             Expanded(
                 flex: 1,
                 child: _buildAnimatedText(
-                    '首页', "ic_homepage.svg", "ic_homepage_selected.svg", 0)),
+                    '首页', "ic_home.svg", "ic_homepage_selected.svg", 0)),
             Expanded(
                 flex: 1,
                 child: _buildAnimatedText('发现', "ic_forecastpage.svg",
