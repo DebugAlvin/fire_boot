@@ -117,11 +117,6 @@ class ThemeService {
   }
 
   static final lightTheme = ThemeData.light().copyWith(
-    colorScheme: const ColorScheme.light().copyWith(
-      background: AppThemes.cardColorLight,
-      primary: AppThemes.primaryColor,
-        primaryContainer:
-    ),
    // backgroundColor: AppThemes.cardColorLight,
     scaffoldBackgroundColor: AppThemes.pageLightBackground,
     primaryColor:AppThemes.primaryColor,

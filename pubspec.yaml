@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -76,6 +76,11 @@ dependencies:
   shared_preferences: ^2.0.6
   #图片缓存
   cached_network_image: ^3.2.3
+  # 监测网络状态 https://pub.flutter-io.cn/packages/connectivity_plus
+  connectivity_plus: ^3.0.3
+  # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
+  keyboard_actions: ^4.2.0
+  filesize: ^2.0.1
   # 国际化
   flutter_localizations:
     sdk: flutter

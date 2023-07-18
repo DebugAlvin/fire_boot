@@ -22,7 +22,9 @@
    可以把复杂的widget代码放到一个或多个方法中。
 5. 控件间距使用SizeBox占位
 6. 善用装饰器模式
-7. 使用方法签名遵循高内聚(迪米特原则)的代码规范，具体可以看Listview itemBuilder源码
+7. 使用方法签名遵循高内聚(迪米特原则)的代码规范，具体可以看Listview itemBuilder源码、
+8. 图片使用AspectRatio嵌套
+9. UI布局少用if else，尽量使用Stack嵌套Visibility
 <pre><code>
 ListView.builder(
   itemBuilder:(BuildContext context, int index){
