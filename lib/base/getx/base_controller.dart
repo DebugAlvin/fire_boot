@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'package:fire_boot/main.dart';
 import 'package:get/get.dart';
 import 'package:fire_boot/base/getx/page_state.dart';
 import 'package:flutter/material.dart';
 
-abstract class BaseController extends FullLifeCycleController with FullLifeCycleMixin {
+abstract class BaseController extends FullLifeCycleController with FullLifeCycleMixin{
 
   late Function onErrorPageNext;
 

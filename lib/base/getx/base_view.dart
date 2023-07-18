@@ -13,7 +13,7 @@ import '../../utils/keyboard_util.dart';
 import 'base_controller.dart';
 
 abstract class BaseView<Controller extends BaseController>
-    extends GetView<Controller> {
+    extends GetView<Controller>{
   BaseView({super.key});
 
   /// get global key

@@ -20,7 +20,11 @@ class SplashLogic extends BaseController {
     super.onReady();
     // onFinish();
     // return;
-    showPrivacyDialog();
+    ////SPUtil需要一点时间初始化
+    Future.delayed(const Duration(microseconds: 200),(){
+      showPrivacyDialog();
+    });
+
   }
 
   Future<void> showPrivacyDialog() async {

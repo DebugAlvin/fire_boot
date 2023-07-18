@@ -8,19 +8,21 @@ import 'package:fire_boot/services/ulog_service.dart';
 import 'package:fire_boot/utils/hud/progress_hud.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/utils/sp_util.dart';
+import 'package:fire_boot/widget/custom_route_listen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'constant/app_values.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  ///SPUtil必须启动时预初始化
+  SPUtil.perInit();
   _initUI();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    navigatorObservers: [RouteObserver()],
+    navigatorObservers: [CustomRouteListenWidget.routeObserver],
     initialRoute: '/',
     getPages: [...Routes.routePage],
     theme: ThemeService.lightTheme,
@@ -47,13 +49,6 @@ void main() {
         Future.delayed(const Duration(seconds: 1), () {
           RouteUtil.pushToView(Routes.mainPage, offAll: true);
         });
-
-        // await LunchConfigService.instance.init(() {
-        //   ///后端说一定要等启动配置服务请求成功后3秒才能获取im
-        //   Future.delayed(const Duration(seconds: 3),(){
-        //     ImService.instance.login();
-        //   });
-        // });
       },
     ),
     builder: ProgressHUD.builder(),
@@ -61,7 +56,6 @@ void main() {
 }
 
 void _initThirdSDK() async {
-  SPUtil.perInit();
   ULogService.instance;
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   //请求获取设备id需要的权限，iOS-ATT广告追踪，Android-根据系统版本oaid或者imie

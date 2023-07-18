@@ -45,8 +45,8 @@ class SPUtil{
   void setBool(key, value) {
     _preferences?.setBool(key, value);
   }
-  bool getBool(key) {
-    return _preferences?.getBool(key) ?? false;
+  bool? getBool(key) {
+    return _preferences?.getBool(key);
   }
   ///设置setDouble类型的
   void setDouble(key, value) {

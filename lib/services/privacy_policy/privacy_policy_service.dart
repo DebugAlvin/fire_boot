@@ -1,6 +1,6 @@
 import 'package:fire_boot/services/web_browser_service.dart';
+import 'package:fire_boot/utils/sp_util.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import '../../constant/app_values.dart';
 import '../../utils/widget_utils.dart';
@@ -12,10 +12,9 @@ class PrivacyPolicyService {
   ///检查隐私协议的状态
   static Future<bool> checkStatus() async {
     //调用本地：
-    final pref = await SharedPreferences.getInstance();
-    bool? isAgree = pref.getBool(SP_PRIVACY_POLICY_CHECK);
+    bool? isAgree = SPUtil().getBool(SP_PRIVACY_POLICY_CHECK);
     //第一次，弹窗是否同意
-    if (isAgree == null || !isAgree || WidgetUtils.getCurrentContext() != null) {
+    if (isAgree == null  || !isAgree) {
       return await PrivacyPolicyService.showPrivacyDialog(WidgetUtils.getCurrentContext()!);
     } else if (isAgree == true) {
       return true;
@@ -34,20 +33,14 @@ class PrivacyPolicyService {
       builder: (BuildContext ctx) {
         return PrivacyPolicyDialog(
           onConfirm: () async {
-            final pref = await SharedPreferences.getInstance();
-            await pref.setBool(SP_PRIVACY_POLICY_CHECK, true);
+            SPUtil().setBool(SP_PRIVACY_POLICY_CHECK, true);
             RouteUtil.popView();
             isAgree = true;
           },
           onCancel: () async {
-            final pref = await SharedPreferences.getInstance();
-            await pref.setBool(SP_PRIVACY_POLICY_CHECK, false);
+            SPUtil().setBool(SP_PRIVACY_POLICY_CHECK, false);
             RouteUtil.popView();
             isAgree = false;
-            // final pref = await SharedPreferences.getInstance();
-            // await pref.setBool(SP_PRIVACY_POLICY_CHECK, true);
-            // RouteUtil.popView();
-            // isAgree = true;
           }, onRegister: () {
           WebBrowserService.instance.pushToWebPage('《注册服务协议》', AppValues.registerPolicyUrl);
         }, onPrivater: () {
