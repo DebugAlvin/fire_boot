@@ -36,7 +36,7 @@ class CustomEmptyView extends StatelessWidget {
                 height: 180,
               ),
               Text(
-                text ?? "空空如也",
+                text!,
                 style: ThemeService().theme.textTheme.labelLarge,
               ),
             ],

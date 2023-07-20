@@ -6,8 +6,6 @@ import 'package:fire_boot/pages/main/binding.dart';
 import 'package:fire_boot/pages/main/view.dart';
 import 'package:fire_boot/pages/match/detail/binding.dart';
 import 'package:fire_boot/pages/match/detail/view.dart';
-import 'package:fire_boot/pages/match/index/binding.dart';
-import 'package:fire_boot/pages/match/index/view.dart';
 import 'package:fire_boot/pages/message/binding.dart';
 import 'package:fire_boot/pages/message/view.dart';
 import 'package:fire_boot/pages/mine/binding.dart';

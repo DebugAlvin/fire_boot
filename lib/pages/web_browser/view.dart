@@ -56,10 +56,4 @@ class WebBrowserPage extends BaseView<WebBrowserLogic> {
       ],
     );
   }
-
-  @override
-  bool suportSafeArea() {
-    // TODO: implement suportSafeArea
-    return false;
-  }
 }

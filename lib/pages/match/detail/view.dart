@@ -1,5 +1,7 @@
 import 'package:fire_boot/base/getx/base_view.dart';
 import 'package:fire_boot/widget/custom_app_bar.dart';
+import 'package:fire_boot/widget/custom_app_life_cycle_listen_widget.dart';
+import 'package:fire_boot/widget/custom_button.dart';
 import 'package:fire_boot/widget/custom_route_listen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,13 +20,19 @@ class MatchDetailPage extends BaseView<MatchDetailLogic> {
   @override
   Widget buildBody(BuildContext context) {
     // TODO: implement buildBody
-    return CustomRouteListenWidget(
-        appearHandler: (changeType) {
-          print('页面加载');
-        },
-        disappearHandler: (changeType) {
-          print('页面消失');
-        },
-        child: Container());
+    return CustomAppLifeCycleListenWidget(
+      didChangeAppLifecycleState: (state){
+        print('app状态：${state}');
+      },
+        child: Column(
+          children: [
+            CustomButton(
+              title: '收藏文章',
+              onPressed: (){
+                controller.onArticleCollect();
+              },
+            )
+          ],
+        ));
   }
 }
