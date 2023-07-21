@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:fire_boot/base/getx/page_state.dart';
 import 'package:flutter/material.dart';
 
-abstract class BaseController extends FullLifeCycleController with FullLifeCycleMixin{
+abstract class BaseController extends GetxController {
 
   late Function onErrorPageNext;
 
@@ -49,23 +49,6 @@ abstract class BaseController extends FullLifeCycleController with FullLifeCycle
     // TODO: implement onInit
     super.onInit();
   }
-
-  @override
-  void onDetached() {
-    // TODO: implement onDetached
-  }
-
-  @override
-  void onInactive() {
-    // TODO: implement onInactive
-  }
-  @override
-  void onPaused() {
-    // TODO: implement onPaused
-  }
-  @override
-  void onResumed() {
-    // TODO: implement onResumed
-  }
+  
 
 }
