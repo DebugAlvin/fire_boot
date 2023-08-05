@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fire_boot/constant/app_values.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:lottie/lottie.dart';
-import 'custom_button.dart';
+import 'button/custom_button.dart';
 
 class CustomNetWorkErrorView extends StatelessWidget {
   const CustomNetWorkErrorView(
@@ -47,14 +47,14 @@ class CustomNetWorkErrorView extends StatelessWidget {
                 height: AppValues.defaultPadding,
               ),
               CustomButton(
-                width: 150,
-                height: 40,
-                useAccentColor: true,
+                // width: 150,
+                // height: 40,
+                // useAccentColor: true,
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 // border: Border.all(color: ThemeService().theme.primaryColor, width: 1),
                 title: '重新加载',
                 //controller.onErrorPageNext()
-                onPressed: () {
+                onTap: () {
                   if(onPressed != null) {
                     onPressed!();
                   }

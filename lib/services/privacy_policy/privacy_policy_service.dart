@@ -3,7 +3,7 @@ import 'package:fire_boot/utils/sp_util.dart';
 import 'package:flutter/material.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import '../../constant/app_values.dart';
-import '../../utils/widget_utils.dart';
+import '../../utils/widget_util.dart';
 import 'privacy_policy_dialog.dart';
 
 class PrivacyPolicyService {
@@ -15,7 +15,7 @@ class PrivacyPolicyService {
     bool? isAgree = SPUtil().getBool(SP_PRIVACY_POLICY_CHECK);
     //第一次，弹窗是否同意
     if (isAgree == null  || !isAgree) {
-      return await PrivacyPolicyService.showPrivacyDialog(WidgetUtils.getCurrentContext()!);
+      return await PrivacyPolicyService.showPrivacyDialog(WidgetUtil.getCurrentContext()!);
     } else if (isAgree == true) {
       return true;
     } else {

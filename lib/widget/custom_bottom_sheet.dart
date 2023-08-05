@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
 
-import 'custom_button.dart';
+import 'button/custom_button.dart';
 
 const double itemHeight = 50;
 
@@ -82,7 +82,7 @@ _buildColumn(List<String> children,
   for (int index = 0; index < children.length; index++) {
     final isLastOne = (index + 1) == children.length ? true : false;
     widgets.add(CustomButton(
-        onPressed: () {
+        onTap: () {
           onPressed(index);
           RouteUtil.popView();
         },

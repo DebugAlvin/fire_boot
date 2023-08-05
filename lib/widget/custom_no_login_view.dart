@@ -1,8 +1,8 @@
 import 'package:fire_boot/constant/app_values.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'custom_button.dart';
+import 'button/custom_button.dart';
 
 class CustomNoLoginView extends StatelessWidget {
   final double? width;
@@ -71,12 +71,12 @@ class CustomNoLoginView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 66),
                 child: CustomButton(
-                  useAccentColor: true,
+                  // useAccentColor: true,
                   borderRadius: const BorderRadius.all(Radius.circular(44.0)),
-                  width: 300.w,
-                  height: 44,
+                  // width: 300.w,
+                  // height: 44,
                   title: '登陆',
-                  onPressed: (){
+                  onTap: (){
                     if(onPressed != null) {
                       onPressed!();
                     }

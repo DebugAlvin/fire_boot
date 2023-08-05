@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fire_boot/utils/sp_util.dart';
-import '../constant/app_button_style.dart';
-import '../constant/app_themes.dart';
-import '../constant/app_values.dart';
+import '../../constant/app_button_style.dart';
+import '../../constant/app_themes.dart';
+import '../../constant/app_values.dart';
+import 'custom_button_theme_data.dart';
+import 'custom_color_scheme.dart';
 
 /// @class : AppThemes
 /// @date : 2023/01/06
@@ -25,7 +27,6 @@ import '../constant/app_values.dart';
 /// https://www.cnblogs.com/yongfengnice/p/13867706.html
 
 class ThemeService {
-
   factory ThemeService() => _getInstance();
 
   static ThemeService get instance => _getInstance();
@@ -46,6 +47,7 @@ class ThemeService {
 
   final _box = SPUtil();
   final _key = 'ThemeMode';
+
   ///用户没有在App设置过主题方案时的默认配置方案，这里设置了Dark，
   ///通常情况下大部分App应该使用Get.isDarkMode ? AppThemes.dark : AppThemes.light，
   ///使用系统的配置。
@@ -64,15 +66,15 @@ class ThemeService {
     //用户还没设置过主题方案时我们使用常量设置默认配置
     //另外，用户拒绝访问存储权限或者用户第一次打开app还没同意隐私政策弹窗
     //也有可能themeMode == null
-    if(themeMode == null) {
+    if (themeMode == null) {
       return _defaultMode;
-    }else if(themeMode == ThemeMode.system.index) {
+    } else if (themeMode == ThemeMode.system.index) {
       //用户在APP选择了"跟随系统"
       return Get.isDarkMode ? ThemeMode.system : ThemeMode.light;
-    }else if(themeMode == ThemeMode.dark.index){
+    } else if (themeMode == ThemeMode.dark.index) {
       //用户在APP设置了暗黑模式
       return ThemeMode.dark;
-    }else{
+    } else {
       //用户在APP选择明亮模式
       return ThemeMode.light;
     }
@@ -83,11 +85,11 @@ class ThemeService {
   ///获取当前的主题
   ThemeData get theme {
     ThemeMode themeMode = this.themeMode;
-    if(themeMode == ThemeMode.system) {
+    if (themeMode == ThemeMode.system) {
       return Get.isDarkMode ? ThemeService.darkTheme : ThemeService.lightTheme;
-    }else if(themeMode == ThemeMode.dark) {
+    } else if (themeMode == ThemeMode.dark) {
       return ThemeService.darkTheme;
-    }else{
+    } else {
       return ThemeService.lightTheme;
     }
   }
@@ -109,34 +111,41 @@ class ThemeService {
   void switchTheme(ThemeMode mode) {
     Get.changeThemeMode(mode);
     _saveThemeToBox(mode.index);
+
     /// 然后使用GetX 提供的切换方式,进行动态更新就可以
     Get.changeThemeMode(mode);
     Get.changeTheme(theme);
+
     /// 这个比较重要,如果不使用这个,可能会导致主题没有及时更新
     _updateTheme();
   }
 
   static final lightTheme = ThemeData.light().copyWith(
-   // backgroundColor: AppThemes.cardColorLight,
+    backgroundColor: AppThemes.cardColorLight,
+    colorScheme: CustomColorScheme.defaultColorScheme(isDark: false),
     scaffoldBackgroundColor: AppThemes.pageLightBackground,
-    primaryColor:AppThemes.primaryColor,
-    shadowColor:AppThemes.colorShadow,
-    bottomAppBarColor:AppThemes.bottomAppBarColorDark,
+    primaryColor: AppThemes.primaryColor,
+    shadowColor: AppThemes.colorShadow,
+    bottomAppBarColor: AppThemes.bottomAppBarColorDark,
     focusColor: AppThemes.colorAccent,
-    dividerColor:AppThemes.dividerColor,
+    dividerColor: AppThemes.dividerColor,
     hintColor: AppThemes.hintColor,
+    buttonTheme: CustomButtonThemeData.defaultTheme(
+        CustomColorScheme.defaultColorScheme(isDark: false)),
     dividerTheme: const DividerThemeData(
-      color:AppThemes.dividerColor,
+      color: AppThemes.dividerColor,
       indent: AppValues.defaultPadding,
       endIndent: AppValues.defaultPadding,
     ),
     textButtonTheme: TextButtonThemeData(
-      style:AppButtonStyles.getTransparentStyle(),
+      style: AppButtonStyles.getTransparentStyle(),
     ),
+
     appBarTheme: const AppBarTheme(
-      backgroundColor:AppThemes.appBarColorWhite,
+      backgroundColor: AppThemes.appBarColorWhite,
       iconTheme: IconThemeData(color: AppThemes.appBarIconColorDark),
-      titleTextStyle: TextStyle(color: AppThemes.appBarIconColorDark,fontSize: 16),
+      titleTextStyle:
+          TextStyle(color: AppThemes.appBarIconColorDark, fontSize: 16),
     ),
     // 文本的颜色与卡片和画布的颜色形成对比
     textTheme: ThemeService.textTheme(false),
@@ -146,27 +155,32 @@ class ThemeService {
     tabBarTheme: ThemeService.tabBarTheme(false),
     cardColor: AppThemes.cardColorLight,
   );
+
   static final darkTheme = ThemeData.dark().copyWith(
+    colorScheme: CustomColorScheme.defaultColorScheme(isDark: true),
     backgroundColor: AppThemes.pageDarkBackground,
     scaffoldBackgroundColor: AppThemes.pageDarkBackground,
-    primaryColor:AppThemes.primaryColor,
-    shadowColor:AppThemes.colorShadow,
-    bottomAppBarColor:AppThemes.bottomAppBarColorDark,
+    primaryColor: AppThemes.primaryColor,
+    shadowColor: AppThemes.colorShadow,
+    bottomAppBarColor: AppThemes.bottomAppBarColorDark,
     focusColor: AppThemes.colorAccent,
     hintColor: AppThemes.hintColor,
-    dividerColor:AppThemes.dividerColor,
+    dividerColor: AppThemes.dividerColor,
+    buttonTheme: CustomButtonThemeData.defaultTheme(
+        CustomColorScheme.defaultColorScheme(isDark: true)),
     dividerTheme: const DividerThemeData(
-      color:AppThemes.dividerColor,
+      color: AppThemes.dividerColor,
       indent: AppValues.defaultPadding,
       endIndent: AppValues.defaultPadding,
     ),
     textButtonTheme: TextButtonThemeData(
-      style:AppButtonStyles.getTransparentStyle(),
+      style: AppButtonStyles.getTransparentStyle(),
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor:AppThemes.appBarColorDark,
+      backgroundColor: AppThemes.appBarColorDark,
       iconTheme: IconThemeData(color: AppThemes.appBarIconColorWhite),
-      titleTextStyle: TextStyle(color: AppThemes.appBarTextColorWhite,fontSize: 16),
+      titleTextStyle:
+          TextStyle(color: AppThemes.appBarTextColorWhite, fontSize: 16),
     ),
     // 文本的颜色与卡片和画布的颜色形成对比
     textTheme: ThemeService.textTheme(true),
@@ -176,7 +190,6 @@ class ThemeService {
     tabBarTheme: ThemeService.tabBarTheme(true),
     cardColor: AppThemes.cardColorDart,
   );
-
 
   /// @method : textTheme
   /// @description :AppTextStyles文本主题颜色配置
@@ -196,69 +209,93 @@ class ThemeService {
   /// button       14.0  medium   1.25
   /// caption      12.0  regular  0.4
   /// overline     10.0  regular  1.5
-  static TextTheme textTheme(bool isDark){
+  static TextTheme textTheme(bool isDark) {
     return const TextTheme().copyWith(
       ///title，一般用于card widget的标题
       titleSmall: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
-      titleMedium:  TextStyle(
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
+      titleMedium: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
-      titleLarge:  TextStyle(
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
+      titleLarge: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
       ///body，正文内容，一般用于商品详情介绍
-      bodySmall:  TextStyle(
+      bodySmall: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
-      bodyMedium:  TextStyle(
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
+      bodyMedium: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
-      bodyLarge:  TextStyle(
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
+      bodyLarge: TextStyle(
           fontSize: 21,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
       ///作为屏幕上最大的文本，
       ///重要的文本或数字
-      displayLarge:  TextStyle(
+      displayLarge: TextStyle(
           fontSize: 112,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
-      displayMedium:  TextStyle(
+      displayMedium: TextStyle(
           fontSize: 56,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
-      displaySmall:  TextStyle(
+      displaySmall: TextStyle(
           fontSize: 36,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
       ///小于display样式大于title样式
       ///在较小屏幕上显示简短、高度强调的文本。
       headlineSmall: TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
-      headlineMedium:  TextStyle(
+      headlineMedium: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
-      headlineLarge:  TextStyle(
+      headlineLarge: TextStyle(
           fontSize: 34,
           fontWeight: FontWeight.normal,
-          color: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark),
+          color: isDark
+              ? AppThemes.textPrimaryColorWhite
+              : AppThemes.textPrimaryColorDark),
 
       ///最小的文字
       labelSmall: const TextStyle(
@@ -271,26 +308,29 @@ class ThemeService {
           fontSize: 16,
           fontWeight: FontWeight.normal,
           color: AppThemes.textColorSecondary),
+
       ///用于与图像关联的辅助文本。
       labelMedium: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.normal,
           color: AppThemes.textColorSecondary),
-
     );
-
   }
 
   /// @method : textTheme
   /// @description :tabbar主题
   static TabBarTheme tabBarTheme(bool isDark) {
     return const TabBarTheme().copyWith(
-      labelColor: isDark ? AppThemes.textPrimaryColorWhite : AppThemes.textPrimaryColorDark,
+      labelColor: isDark
+          ? AppThemes.textPrimaryColorWhite
+          : AppThemes.textPrimaryColorDark,
       unselectedLabelColor: AppThemes.textColorSecondary,
-      labelStyle: const TextStyle(fontSize: 15,),
-      unselectedLabelStyle: const TextStyle(fontSize: 15,),
+      labelStyle: const TextStyle(
+        fontSize: 15,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 15,
+      ),
     );
   }
-
-
 }

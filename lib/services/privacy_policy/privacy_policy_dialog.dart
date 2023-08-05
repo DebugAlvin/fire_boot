@@ -1,4 +1,8 @@
-import 'package:fire_boot/widget/custom_button.dart';
+import 'package:fire_boot/constant/app_values.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
+import 'package:fire_boot/widget/button/custom_button.dart';
+import 'package:fire_boot/widget/button/cutom_big_main_button.dart';
+// import 'package:fire_boot/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fire_boot/constant/app_themes.dart';
@@ -116,8 +120,10 @@ class _PrivacyPolicyDialogState extends State<PrivacyPolicyDialog> {
                     style: TextStyle(
                         color: AppThemes.textColorSecondary, fontSize: 14.w)),
               ),
+              const SizedBox(height: AppValues.defaultPadding,),
               _buildAgreeButton(),
               _buildCancelButton(),
+              const SizedBox(height: AppValues.defaultPadding,),
             ],
           ),
         ),
@@ -127,26 +133,31 @@ class _PrivacyPolicyDialogState extends State<PrivacyPolicyDialog> {
 
   Widget _buildCancelButton() {
     return CustomButton(
-      width: double.infinity,
-      height: 40.w,
-      margin: const EdgeInsets.only(left: 25, right: 25, bottom: 20),
-      borderRadius: BorderRadius.all(Radius.circular(22.w)),
-      onPressed: () => widget.onCancel(),
-      child: Text('拒绝',
-          style:
-              TextStyle(color: AppThemes.textColorSecondary, fontSize: 14.w)),
+      title: '拒绝',
+      textColor: AppThemes.textColorSecondary,
+      alignment: Alignment.center,
+      constraints: BoxConstraints(minHeight: ThemeService().theme.buttonTheme.height),
+      onTap: () => widget.onCancel(),
     );
+
+
+    // return CustomBigMainButton(
+    //   title: '拒绝',
+    //   backgroundColor: Colors.transparent,
+    //   themeData: ThemeService().theme.buttonTheme.copyWith(
+    //     textTheme:
+    //   ),
+    //   onTap: () => widget.onCancel(),
+    // );
   }
 
   Widget _buildAgreeButton() {
-    return CustomButton(
-      onPressed: () => widget.onConfirm(),
-      width: double.infinity,
-      height: 40.w,
-      margin: const EdgeInsets.only(top: 36, left: 25, right: 25),
-      useAccentColor: true,
-      borderRadius: BorderRadius.all(Radius.circular(22.w)),
-      child: Text('同意', style: TextStyle(color: Colors.white, fontSize: 14.w)),
+    return Padding(
+      padding: const EdgeInsets.only(left: 25,right: 25),
+      child: CustomBigMainButton(
+        onTap: () => widget.onConfirm(),
+        title: '同意',
+      ),
     );
   }
 }

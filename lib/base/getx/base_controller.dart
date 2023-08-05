@@ -49,6 +49,6 @@ abstract class BaseController extends GetxController {
     // TODO: implement onInit
     super.onInit();
   }
-  
+
 
 }

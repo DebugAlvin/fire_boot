@@ -112,10 +112,11 @@ class AppThemes {
   static Color maskDeepColor = Colors.black.withOpacity(0.2);
   static Color maskLightColor = Colors.transparent;
 
-  
-  static Color buttonDeepColor = Color(0xFFFC9300);
-  static Color buttonLightColor = Color(0xFFFFBF00);
-  static Color buttonRedColor = Color(0xFFFF654B);
+
+  ///button
+  static const Color buttonDisableBackgroundColor = Color(0xFFCCCCCC);
+  static Color buttonDisableTextColor = Colors.white.withOpacity(0.7);
+
 
   static Color fanGroupButtonStartColor = const Color(0xFFFFCC47);
   static Color fanGroupButtonEndColor = const Color(0xFFFC7600);

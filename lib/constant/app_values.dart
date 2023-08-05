@@ -38,9 +38,9 @@ abstract class AppValues {
       : "android";
 
   ///**********: radius values : **********
-  static const BorderRadius defaultRadius = BorderRadius.all(Radius.circular(12.0));
+  static const double defaultRadius = 12;
   static const double radiusZero = 0;
-  static const BorderRadius smallRadius = BorderRadius.all(Radius.circular(4.0));
+  static const double smallRadius = 4.0;
   static const double radius_6 = 6;
   static const double radius_12 = 12;
   static const double largeRadius = 24;
@@ -79,6 +79,18 @@ abstract class AppValues {
   static const double extraLargeMargin = 36;
   static const double marginBelowVerticalLine = 64;
   static const double extraLargeSpacing = 96;
+
+  ///**********: button values : **********
+  /// 默认高度
+  static const double defaultButtonHeight = 44;
+  /// 默认宽度
+  static const double defaultButtonMiniWidth = 84;
+  /// 默认水平间距
+  static const double defaultButtonHorizontalPadding = 6;
+  /// 默认垂直间距
+  static const double defaultButtonVerticalPadding = 8;
+
+  ///
 
   ///**********: elevation values : **********
   static const double elevation = 16;

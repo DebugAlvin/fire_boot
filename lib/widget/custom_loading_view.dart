@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 
 class CustomLoadingView extends StatelessWidget {
   const CustomLoadingView(

@@ -1,4 +1,4 @@
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

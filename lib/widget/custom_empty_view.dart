@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:lottie/lottie.dart';
 
 class CustomEmptyView extends StatelessWidget {

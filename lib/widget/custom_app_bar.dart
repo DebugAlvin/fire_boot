@@ -2,10 +2,10 @@ import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/widget/custom_app_bar_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 
 //Default appbar customized with the design of our app
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? appBarTitleText;
   final List<Widget>? actions;
   final bool showLeading;

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fire_boot/constant/app_themes.dart';
 import 'package:fire_boot/constant/app_values.dart';
-import 'package:fire_boot/services/theme_service.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
-import 'custom_button.dart';
+
+import 'button/custom_button.dart';
 
 
 Future<bool?> showCustomDialog({
@@ -57,8 +58,8 @@ _buildButton(
       required Color textColor,
       required VoidCallback onPressed}) {
   return CustomButton(
-    height: 44,
-    onPressed: (){
+    // height: 44,
+    onTap: (){
       onPressed();
     },
     child: Container(

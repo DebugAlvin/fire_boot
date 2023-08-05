@@ -1,7 +1,7 @@
+import 'package:fire_boot/widget/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fire_boot/utils/route_util.dart';
-import 'custom_button.dart';
 
 enum CustomAppBarIconStyle {
   back,
@@ -35,9 +35,7 @@ class CustomAppBarIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return CustomButton(
-      width: maxWidth,
-      height: maxHeight,
-      onPressed: () {
+      onTap: () {
         if (onPressed != null) {
           onPressed!();
         } else {
