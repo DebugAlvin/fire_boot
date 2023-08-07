@@ -27,88 +27,91 @@ class MatchDetailPage extends BaseView<MatchDetailLogic> {
         didChangeAppLifecycleState: (state) {
           print('app状态：${state}');
         },
-        child: Column(
-          children: [
-            CustomButton(
-              alignment: Alignment.center,
-              backgroundColor: Colors.red,
-              constraints: const BoxConstraints(
-                minHeight: 80,
-                maxWidth: 190,
+        child: Padding(
+          padding: const EdgeInsets.only(left: AppValues.defaultPadding,right: AppValues.defaultPadding),
+          child: Column(
+            children: [
+              CustomButton(
+                alignment: Alignment.center,
+                backgroundColor: Colors.red,
+                constraints: const BoxConstraints(
+                  minHeight: 80,
+                  maxWidth: 190,
+                ),
+                textColor: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
+                title: '自定义按钮',
+                onTap: () {
+                  controller.onArticleCollect();
+                },
               ),
-              textColor: Colors.white,
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              title: '自定义按钮',
-              onTap: () {
-                controller.onArticleCollect();
-              },
-            ),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            const CustomBigGhostButton(
-              title: '幽灵按钮',
-            ),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            const CustomBigMainButton(
-              title: '大主色按钮',
-            ),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            const CustomBigMainButton(
-              title: '大主色按钮（禁用状态）',
-              isEnable: false,
-            ),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomSmallMainButton(
-                  title: '小按钮',
-                ),
-                SizedBox(
-                  width: AppValues.defaultPadding,
-                ),
-                CustomSmallMainButton(
-                  title: '小按钮',
-                  textColor: Colors.red,
-                ),
-                SizedBox(
-                  width: AppValues.defaultPadding,
-                ),
-                CustomSmallMainButton(
-                  title: '自适应小按钮',
-                  textColor: Colors.blue,
-                  fontSize: 22,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            const CustomSmallMainButton(
-                title: '小按钮（禁用）',  isEnable: false,),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomSmallOutlineButton(title: '小边框按钮'),
-                SizedBox(
-                  width: AppValues.defaultPadding,
-                ),
-                CustomSmallOutlineButton(title: '小边框按钮(禁用)', isEnable: false),
-              ],
-            ),
-          ],
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              const CustomBigGhostButton(
+                title: '幽灵按钮',
+              ),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              const CustomBigMainButton(
+                title: '大主色按钮',
+              ),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              const CustomBigMainButton(
+                title: '大主色按钮（禁用状态）',
+                isEnable: false,
+              ),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomSmallMainButton(
+                    title: '小按钮',
+                  ),
+                  SizedBox(
+                    width: AppValues.defaultPadding,
+                  ),
+                  CustomSmallMainButton(
+                    title: '小按钮',
+                    textColor: Colors.red,
+                  ),
+                  SizedBox(
+                    width: AppValues.defaultPadding,
+                  ),
+                  CustomSmallMainButton(
+                    title: '自适应小按钮',
+                    textColor: Colors.blue,
+                    fontSize: 22,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              const CustomSmallMainButton(
+                  title: '小按钮（禁用）',  isEnable: false,),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomSmallOutlineButton(title: '小边框按钮'),
+                  SizedBox(
+                    width: AppValues.defaultPadding,
+                  ),
+                  CustomSmallOutlineButton(title: '小边框按钮(禁用)', isEnable: false),
+                ],
+              ),
+            ],
+          ),
         ));
   }
 }
