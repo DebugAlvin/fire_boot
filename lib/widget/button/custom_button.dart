@@ -1,3 +1,4 @@
+import 'package:fire_boot/services/theme/extention/button_theme_data_extension.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/utils/widget_util.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ import 'package:flutter/material.dart';
 /// 该组件的布局规则参考[Container]的布局规则
 /// 该组件的[alignment]的属性默认为null,即使父布局给的约束是无边界(最大宽度或者最大高度是double.infinity.)
 /// 组件的尺寸也会和child一样大。
-/// 那就是说：不给[alignment]属性设置值，即使把[BrnNormalButton],放到[column]、[ListView]中，
+/// 那就是说：不给[alignment]属性设置值，即使把[CustomButton],放到[column]、[ListView]中，
 /// 他也会尽可能的小。如果设置了[constraints]属性，那么就会按着[constraints]布局。
 ///
 /// 案例一
@@ -73,10 +74,41 @@ class CustomButton extends StatelessWidget {
     this.disableBackgroundColor = Colors.transparent,
     this.decoration,
     this.padding,
-    this.constraints = const BoxConstraints.tightFor(),
+    this.constraints,
     this.textColor,
     this.disableTextColor = Colors.transparent,
+    this.textTheme,
   }) : super(key: key);
+
+  CustomButton.outline({
+    Key? key,
+    Color? disableLineColor,
+    Color? lineColor,
+    double borderWith = 1.0,
+    required this.title,
+    this.isEnable = true,
+    this.backgroundColor = Colors.transparent,
+    this.disableBackgroundColor = Colors.transparent,
+    this.alignment,
+    this.child,
+    this.onTap,
+    this.textColor,
+    this.disableTextColor,
+    this.padding,
+    this.textStyle,
+    this.constraints,
+    this.borderRadius,
+    this.themeData,
+    this.textTheme,
+  })  : decoration = _OutlineBoxDecorationCreator.createOutlineBoxDecoration(
+      isEnable: isEnable ?? true,
+      disableLineColor: disableLineColor,
+      lineColor: lineColor,
+      disableBackgroundColor: disableBackgroundColor ?? Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
+      borderRadius: borderRadius ?? BorderRadius.zero,
+      borderWith: borderWith),
+        super(key: key);
 
   /// 按钮显示的文案
   final String? title;
@@ -124,14 +156,17 @@ class CustomButton extends StatelessWidget {
   final bool? isEnable;
 
   ///默认主题配置
-  final ThemeData? themeData;
+  final ButtonThemeData? themeData;
+
+  ///默认主题配置
+  final TextTheme? textTheme;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final defaultTheme = themeData ?? ThemeService().theme;
-    textColor ?? defaultTheme.colorScheme.primary;
-
+    final defaultTheme = themeData ?? ThemeService().theme.buttonTheme;
+    // textColor ?? defaultTheme.colorScheme?.primary;
+    final defaultTextTheme = textTheme ?? ThemeService().theme.textTheme;
     return GestureDetector(
       onTap: () {
         if (WidgetUtil.isMultiClick()) {
@@ -145,24 +180,26 @@ class CustomButton extends StatelessWidget {
         alignment: alignment,
         decoration: decoration ?? _getBoxDecoration(_getBackgroundColor()),
         constraints: constraints,
-        padding: padding,
-        child: child ?? _buildTitle(defaultTheme),
+        padding: padding ??
+            EdgeInsets.symmetric(
+                vertical: defaultTheme.verticalPadding,
+                horizontal: defaultTheme.horizontalPadding),
+        child: child ?? _buildTitle(defaultTheme,defaultTextTheme),
       ),
     );
   }
 
-  Text _buildTitle(ThemeData themeData) {
+  Text _buildTitle(ButtonThemeData themeData,TextTheme textTheme) {
     Color? textColor;
     if (isEnable == true) {
-      textColor = this.textColor;
+      textColor = this.textColor ?? themeData.colorScheme?.primary;
     } else {
       textColor = disableTextColor ?? (this.textColor)?.withOpacity(0.7);
     }
     return Text(title!,
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
-        style: textStyle ??
-            themeData.textTheme.bodyMedium?.copyWith(color: textColor));
+        style: textStyle ?? textTheme.bodyMedium?.copyWith(color: textColor));
   }
 
   Color? _getBackgroundColor() {
@@ -174,5 +211,25 @@ class CustomButton extends StatelessWidget {
       color: bgColor,
       borderRadius: borderRadius,
     );
+  }
+}
+
+class _OutlineBoxDecorationCreator {
+  static BoxDecoration createOutlineBoxDecoration({
+    required bool isEnable,
+    Color? disableLineColor,
+    Color? lineColor,
+    required Color backgroundColor,
+    required Color disableBackgroundColor,
+    required BorderRadiusGeometry borderRadius,
+    double borderWith = 1.0,
+  }) {
+    Color _lineColor = isEnable ? lineColor! : disableLineColor!;
+    Color _bgColor = isEnable ? backgroundColor : disableBackgroundColor;
+
+    return BoxDecoration(
+        border: Border.all(color: _lineColor, width: borderWith),
+        borderRadius: borderRadius,
+        color: _bgColor);
   }
 }

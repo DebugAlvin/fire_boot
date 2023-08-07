@@ -13,9 +13,13 @@ class CustomButtonThemeData {
     defaultTheme.borderRadius =
         const BorderRadius.all(Radius.circular(AppValues.smallRadius));
     defaultTheme.disableTextColor = AppThemes.buttonDisableTextColor;
-    defaultTheme.disableBackgroundColor =
-        AppThemes.buttonDisableBackgroundColor;
     defaultTheme.horizontalPadding = AppValues.defaultButtonHorizontalPadding;
+    defaultTheme.verticalPadding = AppValues.defaultButtonVerticalPadding;
+    defaultTheme.borderWith = AppValues.defaultBorderWith;
+    defaultTheme.borderColor = AppThemes.buttonBorderColor;
+    defaultTheme.disableBorderColor = AppThemes.buttonBorderColor;
+    defaultTheme.mainTextColor = AppThemes.buttonMainTextColor;
+    defaultTheme.outLineDisableTextColor = AppThemes.buttonOutlineDisableTextColor;
     return defaultTheme;
   }
 }

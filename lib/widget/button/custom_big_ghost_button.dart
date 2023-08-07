@@ -41,7 +41,7 @@ class CustomBigGhostButton extends StatelessWidget {
       constraints: BoxConstraints.tightFor(
           width: width ?? double.infinity, height: defaultTheme.height),
       backgroundColor: backgroundColor ??
-          defaultTheme.colorScheme?.primary.withOpacity(0.05),
+          defaultTheme.colorScheme?.primary.withOpacity(0.1),
       onTap: onTap,
       alignment: Alignment.center,
       title: title,

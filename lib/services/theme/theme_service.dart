@@ -121,12 +121,11 @@ class ThemeService {
   }
 
   static final lightTheme = ThemeData.light().copyWith(
-    backgroundColor: AppThemes.cardColorLight,
+    // backgroundColor: AppThemes.cardColorLight, /废弃，使用colorScheme.background
     colorScheme: CustomColorScheme.defaultColorScheme(isDark: false),
     scaffoldBackgroundColor: AppThemes.pageLightBackground,
     primaryColor: AppThemes.primaryColor,
     shadowColor: AppThemes.colorShadow,
-    bottomAppBarColor: AppThemes.bottomAppBarColorDark,
     focusColor: AppThemes.colorAccent,
     dividerColor: AppThemes.dividerColor,
     hintColor: AppThemes.hintColor,
@@ -153,16 +152,13 @@ class ThemeService {
     primaryTextTheme: ThemeService.textTheme(false),
     //tabbr
     tabBarTheme: ThemeService.tabBarTheme(false),
-    cardColor: AppThemes.cardColorLight,
   );
 
   static final darkTheme = ThemeData.dark().copyWith(
     colorScheme: CustomColorScheme.defaultColorScheme(isDark: true),
-    backgroundColor: AppThemes.pageDarkBackground,
     scaffoldBackgroundColor: AppThemes.pageDarkBackground,
     primaryColor: AppThemes.primaryColor,
     shadowColor: AppThemes.colorShadow,
-    bottomAppBarColor: AppThemes.bottomAppBarColorDark,
     focusColor: AppThemes.colorAccent,
     hintColor: AppThemes.hintColor,
     dividerColor: AppThemes.dividerColor,
@@ -186,9 +182,7 @@ class ThemeService {
     textTheme: ThemeService.textTheme(true),
     // 与primaryColor形成对比的文本主题,可以直接使用暗黑模式的配置
     primaryTextTheme: ThemeService.textTheme(false),
-
     tabBarTheme: ThemeService.tabBarTheme(true),
-    cardColor: AppThemes.cardColorDart,
   );
 
   /// @method : textTheme

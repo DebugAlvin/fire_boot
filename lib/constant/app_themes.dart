@@ -36,19 +36,18 @@ class AppThemes {
   ///阴影颜色
   static const Color colorShadow = Color(0x66E0E6FD);
 
-  //card color
-  static const Color cardColorLight = Color(0xFFFFFFFF);
-  static const Color cardColorDart = Color(0xFFFFFFFF);
-
   ///widget color
   static const Color bottomAppBarColorDark = Color(0xFF161616);
   static const Color dividerColor = Color(0xFFF2F4F7);
   static Color elevatedContainerColorOpacity = greyWithOpacityHalf;
   static Color statusBarColor = pageLightBackground;
+  static const Color borderColor = Color(0xFFF0F0F0);
+  static const Color widgetColorDark = Color(0xFF000000);
+  static const Color widgetColorWhite = Color(0xFFFFFFFF);
 
   ///text color
-  static const Color textPrimaryColorDark = Color(0xFF4D4D4D);
-  static const Color textPrimaryColorWhite = Color(0xFFFFFFFF);
+  static const Color textPrimaryColorDark = widgetColorDark;
+  static const Color textPrimaryColorWhite = widgetColorWhite;
   static const Color textColorSecondary = textColorGrey;
   static const Color textColorGrey = lightGray;
   static const Color textColorGreyLight = lightGray;
@@ -86,23 +85,6 @@ class AppThemes {
   static const Color redCard = Color(0xFFCC0000);
   static const Color tabBarIconColorSelected = Color(0xFFFCC100);
   static const Color tabBarIconColorUnselected = Color(0xFFA9B5C4);
-  static const Color tagLivingBackgroundColor = Color(0xFFFFE6E6);
-  static const Color userFollowButtonBackground = Color(0xFFFFF2CC);
-  static const Color basketballBackground = Color(0xFF806440);
-  static const Color matchGameFinishStatus = Color(0xFFD1C295);
-  static const Color esportBackgrouund = Color(0xFF394058);
-  static const Color basketIconColor = Color(0xFFA16600);
-  static const Color csgoIconColor = Color(0xFFFFA817);
-  static const Color lolIconColor = Color(0xFFFF4029);
-  static const Color dota2IconColor = Color(0xFFFF611A);
-  static const Color kogIconColor = Color(0xFFF3B55B);
-  static const Color SecuritiesVipGold = Color(0xFFFFE9BE);
-  static const Color warningBackground = Color(0xFFFFFCF2);
-  static const Color incomeTopBackground = Color(0xFFDFE6F2);
-  static const Color incomeTopStartGradientBackground = Color(0xFFA1B3D0);
-  static const Color incomeTopEndGradientBackground = Color(0xFF5B628F);
-  static const Color incomePageDivider = Color(0xFFACC5DC);
-  static const Color basketballMatchBallColor = Color(0xFF0074E0);
 
   static const Color statusBarColorWhite = Color(0xFFFFFFFF);
   static const Color statusBarColorDark = Color(0xFF000000);
@@ -112,16 +94,9 @@ class AppThemes {
   static Color maskDeepColor = Colors.black.withOpacity(0.2);
   static Color maskLightColor = Colors.transparent;
 
-
   ///button
-  static const Color buttonDisableBackgroundColor = Color(0xFFCCCCCC);
   static Color buttonDisableTextColor = Colors.white.withOpacity(0.7);
-
-
-  static Color fanGroupButtonStartColor = const Color(0xFFFFCC47);
-  static Color fanGroupButtonEndColor = const Color(0xFFFC7600);
-  static Color fanGroupBlueButtonStartColor = const Color(0xFFA5ACFF);
-  static Color fanGroupBlueButtonEndColor = const Color(0xFFA5ACFF);
-  static const Color badgeUsingColor = Color(0xFFFFECB2);
-
+  static const Color buttonBorderColor = borderColor;
+  static const buttonMainTextColor = AppThemes.textPrimaryColorWhite;
+  static const Color buttonOutlineDisableTextColor = Color(0xFFCCCCCC);
 }

@@ -85,11 +85,11 @@ abstract class AppValues {
   static const double defaultButtonHeight = 44;
   /// 默认宽度
   static const double defaultButtonMiniWidth = 84;
-  /// 默认水平间距
+  /// 默认水平间距（CustomSmallMainButton使用）
   static const double defaultButtonHorizontalPadding = 6;
-  /// 默认垂直间距
+  /// 默认垂直间距（CustomSmallMainButton使用）
   static const double defaultButtonVerticalPadding = 8;
-
+  static const double defaultBorderWith = 1;
   ///
 
   ///**********: elevation values : **********
