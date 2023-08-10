@@ -1,5 +1,5 @@
 import 'package:fire_boot/base/getx/base_view.dart';
-import 'package:fire_boot/widget/custom_app_bar.dart';
+import 'package:fire_boot/widget/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

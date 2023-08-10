@@ -1,15 +1,16 @@
-import 'package:fire_boot/constant/app_values.dart';
-import 'package:fire_boot/widget/custom_app_bar_icon_button.dart';
+import 'package:fire_boot/utils/route_util.dart';
+import 'package:fire_boot/widget/button/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
+import 'package:flutter_svg/svg.dart';
 
 //Default appbar customized with the design of our app
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? appBarTitleText;
-  final List<Widget>? actions;
+  final List<CustomIconButton>? actions;
   final bool showLeading;
-  final Widget? leading;
+  final CustomIconButton? leading;
   final Widget? titleView;
   final Color? backgroundColor;
   final double? leadingWidth;
@@ -17,8 +18,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarTheme? appBarTheme;
   final double? elevation;
   final double? height;
+  final VoidCallback? onBackTap;
 
-  CustomAppBar({
+  const CustomAppBar({
     Key? key,
     this.appBarTitleText,
     this.actions,
@@ -31,6 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.appBarTheme,
     this.elevation = 0,
     this.height,
+    this.onBackTap,
   }) : super(key: key);
 
   @override
@@ -50,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: backgroundColor ?? theme.backgroundColor,
         leading: showLeading == false
             ? null
-            : (leading ?? const CustomAppBarIconButton()),
+            : (leading ?? _buildBackIconButton(theme.iconTheme!)),
         leadingWidth: leadingWidth,
         elevation: elevation,
         actions: actions,
@@ -62,6 +65,27 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: theme.titleTextStyle,
             ),
       ),
+    );
+  }
+
+  _buildBackIconButton(IconThemeData themeData) {
+    return CustomIconButton(
+      onTap: () {
+        if (onBackTap != null) {
+          onBackTap!();
+        } else {
+          RouteUtil.popView();
+        }
+      },
+      widgetWidth: 44,
+      widgetHeight: preferredSize.height,
+      iconWidget: SvgPicture.asset(
+        'assets/svg/ic_normal_back.svg',
+        width: 18,
+        height: 18,
+        color: themeData.color,
+      ),
+      iconThemeData: themeData,
     );
   }
 }

@@ -160,7 +160,7 @@ abstract class BaseView<Controller extends BaseController>
     } else if (controller.pageState == PageState.NEED_LOGIN) {
       container = CustomNoLoginView(
         color: scaffoldBackgroundColor(),
-        onPressed: () => AccountService.sharedInstance.pushToLogin3rdPage(),
+        onPressed: () => AccountService.sharedInstance.pushToLoginPage(),
       );
     } else {
       container = CustomEmptyView(

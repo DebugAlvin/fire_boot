@@ -112,6 +112,10 @@ class AccountService {
     AccountService.sharedInstance.logoutUser();
   }
 
+  Future<void>pushToLoginPage() async {
+
+  }
+
   /// 退出登录
   void logoutUser() {
     // // 清除账号信息
