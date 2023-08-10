@@ -4,6 +4,7 @@ import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/widget/button/custom_button.dart';
 import 'package:fire_boot/widget/button/custom_icon_button.dart';
 import 'package:fire_boot/widget/app_bar/custom_app_bar.dart';
+import 'package:fire_boot/widget/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'logic.dart';
@@ -34,6 +35,9 @@ class HomePage extends BaseView<HomeLogic> {
             },
             child: const Text('点击下一页（透明导航栏）')),
         CustomIconButton(
+          onTap: (){
+            CustomToast.show('成功', context);
+          },
           name: '返回',
           direction: Direction.left,
           widgetHeight: 44,

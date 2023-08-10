@@ -1,5 +1,5 @@
 import 'package:fire_boot/services/account_service.dart';
-import 'package:fire_boot/widget/custom_empty_view.dart';
+import 'package:fire_boot/widget/custom_empty_widget.dart';
 import 'package:fire_boot/widget/custom_loading_view.dart';
 import 'package:fire_boot/widget/custom_netework_error_view.dart';
 import 'package:fire_boot/widget/custom_no_login_view.dart';
@@ -163,7 +163,7 @@ abstract class BaseView<Controller extends BaseController>
         onPressed: () => AccountService.sharedInstance.pushToLoginPage(),
       );
     } else {
-      container = CustomEmptyView(
+      container = CustomEmptyWidget(
         color: pageBackgroundColor(),
       );
     }

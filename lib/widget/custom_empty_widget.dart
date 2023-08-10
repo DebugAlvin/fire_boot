@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:lottie/lottie.dart';
 
-class CustomEmptyView extends StatelessWidget {
-  const CustomEmptyView(
+class CustomEmptyWidget extends StatelessWidget {
+  const CustomEmptyWidget(
       {Key? key, this.width, this.height, this.alignment = Alignment.center, this.color, this.text = "暂无数据", this.imgPath = "assets/images/data_empty.png"})
       : super(key: key);
   final double? width;
