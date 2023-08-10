@@ -13,14 +13,6 @@ class MinePage extends BaseView<MineLogic> {
   @override
   Widget buildBody(BuildContext context) {
     // TODO: implement buildBody
-    return CustomRouteListenWidget(
-        appearHandler: (changeType){
-          print('页面加载');
-        },
-        disappearHandler: (changeType){
-          print('页面消失');
-        },
-        child: Container());
+    return CustomRouteListenWidget(handler: (type) {}, child: Container());
   }
-
 }
