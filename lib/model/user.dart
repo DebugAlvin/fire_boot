@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fire_boot/services/app_http/account_service.dart';
+import 'package:fire_boot/services/account_service.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'anchor_infor.dart';
 part 'user.g.dart';

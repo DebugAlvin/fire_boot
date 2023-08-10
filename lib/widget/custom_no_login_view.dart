@@ -1,5 +1,6 @@
 import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
+import 'package:fire_boot/widget/button/custom_small_mian_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'button/custom_button.dart';
@@ -65,25 +66,22 @@ class CustomNoLoginView extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned.fill(
+            Positioned(
+                bottom: 66,
+                left: 0,
+                right: 0,
                 child: Container(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 66),
-                child: CustomButton(
-                  // useAccentColor: true,
-                  borderRadius: const BorderRadius.all(Radius.circular(44.0)),
-                  // width: 300.w,
-                  // height: 44,
-                  title: '登陆',
-                  onTap: (){
-                    if(onPressed != null) {
-                      onPressed!();
-                    }
-                  },
-                ),
-              ),
-            )),
+                  alignment: Alignment.center,
+                  child: CustomSmallMainButton(
+                    width: 300.w,
+                    title: '登陆',
+                    onTap: () {
+                      if (onPressed != null) {
+                        onPressed!();
+                      }
+                    },
+                  ),
+                )),
           ],
         ),
       ),

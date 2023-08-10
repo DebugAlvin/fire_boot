@@ -4,7 +4,6 @@ import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/widget/button/custom_button.dart';
 import 'package:fire_boot/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'logic.dart';
 
 class HomePage extends BaseView<HomeLogic> {

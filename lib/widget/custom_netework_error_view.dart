@@ -1,3 +1,5 @@
+import 'package:fire_boot/widget/button/custom_small_mian_button.dart';
+import 'package:fire_boot/widget/button/cutom_big_main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
@@ -46,11 +48,12 @@ class CustomNetWorkErrorView extends StatelessWidget {
               const SizedBox(
                 height: AppValues.defaultPadding,
               ),
-              CustomButton(
-                // width: 150,
+              CustomSmallMainButton(
+                width: 100,
+              // maxWidth: 150,
                 // height: 40,
                 // useAccentColor: true,
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                // borderRadius: const BorderRadius.all(Radius.circular(5)),
                 // border: Border.all(color: ThemeService().theme.primaryColor, width: 1),
                 title: '重新加载',
                 //controller.onErrorPageNext()

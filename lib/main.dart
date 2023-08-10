@@ -2,7 +2,7 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:fire_boot/pages/splash/binding.dart';
 import 'package:fire_boot/pages/splash/view.dart';
 import 'package:fire_boot/routes/routes.dart';
-import 'package:fire_boot/services/app_http/account_service.dart';
+import 'package:fire_boot/services/account_service.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/services/ulog_service.dart';
 import 'package:fire_boot/utils/hud/progress_hud.dart';

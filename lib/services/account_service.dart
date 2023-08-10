@@ -1,7 +1,7 @@
 import 'package:fire_boot/constant/app_cache_key.dart';
 import 'package:fire_boot/model/user.dart';
 import 'package:fire_boot/utils/sp_util.dart';
-import 'app_request_service.dart';
+import 'app_http/app_request_service.dart';
 
 /// 处理账号登陆相关的问题
 class AccountService {
@@ -55,6 +55,16 @@ class AccountService {
     return _user;
   }
 
+  Future<void> addListener(AccountServiceListener listener) async {
+    if (listeners.contains(listener)) return;
+    listeners.add(listener);
+  }
+
+  Future<void> removeListener(AccountServiceListener listener) async {
+    if (!listeners.contains(listener)) return;
+    listeners.remove(listener);
+  }
+
   /// 用户登陆
   ///
   /// * [user] 登陆用户的信息
@@ -96,10 +106,6 @@ class AccountService {
         }
       }
     }
-  }
-
-  Future<void> pushToLogin3rdPage() async {
-    // RouteUtil.pushToView(Routes.login3rdPage);
   }
 
   void onUserTokenInvalid() {
