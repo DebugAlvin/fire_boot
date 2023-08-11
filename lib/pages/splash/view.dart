@@ -83,9 +83,4 @@ class SplashPage extends BaseView<SplashLogic> {
     return null;
   }
 
-  @override
-  bool suportSafeArea() {
-    // TODO: implement suportSafeArea
-    return false;
-  }
 }

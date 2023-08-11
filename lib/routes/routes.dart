@@ -16,6 +16,8 @@ import 'package:fire_boot/pages/test/button/binding.dart';
 import 'package:fire_boot/pages/test/button/view.dart';
 import 'package:fire_boot/pages/test/custom_state/binding.dart';
 import 'package:fire_boot/pages/test/custom_state/view.dart';
+import 'package:fire_boot/pages/test/hud/binding.dart';
+import 'package:fire_boot/pages/test/hud/view.dart';
 import 'package:fire_boot/pages/test/life_cycle/binding.dart';
 import 'package:fire_boot/pages/test/life_cycle/view.dart';
 import 'package:fire_boot/pages/test/state/binding.dart';
@@ -81,6 +83,9 @@ abstract class Routes {
   ///测试生命周期
   static const String testLifeCyclePage = '/test/life_cycle';
 
+  ///测试生命周期
+  static const String testHUDPage = '/test/hud';
+
   ///页面合集
   static final routePage = [
     GetPage(
@@ -140,6 +145,10 @@ abstract class Routes {
       page: () => TestLifeCyclePage(),
       binding: TestLifeCycleBinding(),
     ),
-
+    GetPage(
+      name: testHUDPage,
+      page: () => TestHUDPage(),
+      binding: TestHUDBinding(),
+    ),
   ];
 }
