@@ -16,6 +16,8 @@ import 'package:fire_boot/pages/test/button/binding.dart';
 import 'package:fire_boot/pages/test/button/view.dart';
 import 'package:fire_boot/pages/test/custom_state/binding.dart';
 import 'package:fire_boot/pages/test/custom_state/view.dart';
+import 'package:fire_boot/pages/test/life_cycle/binding.dart';
+import 'package:fire_boot/pages/test/life_cycle/view.dart';
 import 'package:fire_boot/pages/test/state/binding.dart';
 import 'package:fire_boot/pages/test/state/view.dart';
 import 'package:fire_boot/pages/topic/binding.dart';
@@ -76,6 +78,9 @@ abstract class Routes {
   ///测试自定义状态页面
   static const String testCustomStatePage = '/test/custom_state';
 
+  ///测试生命周期
+  static const String testLifeCyclePage = '/test/life_cycle';
+
   ///页面合集
   static final routePage = [
     GetPage(
@@ -130,5 +135,11 @@ abstract class Routes {
       page: () => TestCustomStatePage(),
       binding: TestCustomStateBinding(),
     ),
+    GetPage(
+      name: testLifeCyclePage,
+      page: () => TestLifeCyclePage(),
+      binding: TestLifeCycleBinding(),
+    ),
+
   ];
 }

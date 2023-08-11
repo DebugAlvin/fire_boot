@@ -39,6 +39,11 @@ class HomePage extends BaseView<HomeLogic> {
               RouteUtil.pushToView(Routes.testCustomStatePage);
             },
             child: const Text('自定义页面状态样例')),
+        CustomButton(
+            onTap: () {
+              RouteUtil.pushToView(Routes.testLifeCyclePage);
+            },
+            child: const Text('生命周期样例')),
       ],
     );
   }

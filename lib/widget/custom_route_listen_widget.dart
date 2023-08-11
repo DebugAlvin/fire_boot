@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 // 路由操作枚举
-enum RouteChangeType {
-  willAppear, ///页面将展示
-  didAppear, ///页面已展示
-  willDisAppear, ///页面已消失
-  didDisAppear, ///页面将要消失
+enum RouteState {
+  didPush,
+  didPushNext,
+  didPop,
+  didPopNext,
 }
 
 class CustomRouteListenWidget extends StatefulWidget {
@@ -15,7 +15,7 @@ class CustomRouteListenWidget extends StatefulWidget {
   final Widget child;
 
   // 当前页面展示时的回调
-  final Function(RouteChangeType)? handler;
+  final Function(RouteState)? handler;
 
   const CustomRouteListenWidget({super.key, this.handler, required this.child});
 
@@ -46,7 +46,7 @@ class _CustomRouteListenWidgetState extends State<CustomRouteListenWidget> with 
   @override
   void didPush() {
     if (widget.handler != null) {
-      widget.handler!(RouteChangeType.willAppear);
+      widget.handler!(RouteState.didPush);
     }
     super.didPush();
   }
@@ -54,7 +54,7 @@ class _CustomRouteListenWidgetState extends State<CustomRouteListenWidget> with 
   @override
   void didPop() {
     if (widget.handler != null) {
-      widget.handler!(RouteChangeType.willDisAppear);
+      widget.handler!(RouteState.didPop);
     }
     super.didPop();
   }
@@ -62,7 +62,7 @@ class _CustomRouteListenWidgetState extends State<CustomRouteListenWidget> with 
   @override
   void didPushNext() {
     if (widget.handler != null) {
-      widget.handler!(RouteChangeType.didAppear);
+      widget.handler!(RouteState.didPushNext);
     }
     super.didPushNext();
   }
@@ -70,7 +70,7 @@ class _CustomRouteListenWidgetState extends State<CustomRouteListenWidget> with 
   @override
   void didPopNext() {
     if (widget.handler != null) {
-      widget.handler!(RouteChangeType.didDisAppear);
+      widget.handler!(RouteState.didPopNext);
     }
     super.didPopNext();
   }
