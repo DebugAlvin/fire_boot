@@ -12,6 +12,12 @@ import 'package:fire_boot/pages/mine/binding.dart';
 import 'package:fire_boot/pages/mine/view.dart';
 import 'package:fire_boot/pages/splash/binding.dart';
 import 'package:fire_boot/pages/splash/view.dart';
+import 'package:fire_boot/pages/test/button/binding.dart';
+import 'package:fire_boot/pages/test/button/view.dart';
+import 'package:fire_boot/pages/test/custom_state/binding.dart';
+import 'package:fire_boot/pages/test/custom_state/view.dart';
+import 'package:fire_boot/pages/test/state/binding.dart';
+import 'package:fire_boot/pages/test/state/view.dart';
 import 'package:fire_boot/pages/topic/binding.dart';
 import 'package:fire_boot/pages/topic/view.dart';
 import 'package:fire_boot/pages/web_browser/binding.dart';
@@ -61,6 +67,15 @@ abstract class Routes {
   ///动弹
   static const String matchDetailPage = '/match/detail';
 
+  ///测试CustomButton
+  static const String testButtonPage = '/test/button';
+
+  ///测试状态页面
+  static const String testStatePage = '/test/state';
+
+  ///测试自定义状态页面
+  static const String testCustomStatePage = '/test/custom_state';
+
   ///页面合集
   static final routePage = [
     GetPage(
@@ -100,6 +115,20 @@ abstract class Routes {
       page: () => MatchDetailPage(),
       binding: MatchDetailBinding(),
     ),
-
+    GetPage(
+      name: testButtonPage,
+      page: () => TestButtonPage(),
+      binding: TestButtonBinding(),
+    ),
+    GetPage(
+      name: testStatePage,
+      page: () => TestStatePage(),
+      binding: TestStateBinding(),
+    ),
+    GetPage(
+      name: testCustomStatePage,
+      page: () => TestCustomStatePage(),
+      binding: TestCustomStateBinding(),
+    ),
   ];
 }

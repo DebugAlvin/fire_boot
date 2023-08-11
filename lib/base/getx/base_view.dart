@@ -1,8 +1,8 @@
 import 'package:fire_boot/services/account_service.dart';
 import 'package:fire_boot/widget/custom_empty_widget.dart';
-import 'package:fire_boot/widget/custom_loading_view.dart';
+import 'package:fire_boot/widget/custom_loading_widget.dart';
 import 'package:fire_boot/widget/custom_netework_error_view.dart';
-import 'package:fire_boot/widget/custom_no_login_view.dart';
+import 'package:fire_boot/widget/custom_no_login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,7 +13,7 @@ import '../../utils/keyboard_util.dart';
 import 'base_controller.dart';
 
 abstract class BaseView<Controller extends BaseController>
-    extends GetView<Controller>{
+    extends GetView<Controller> {
   BaseView({super.key});
 
   /// get global key
@@ -26,7 +26,6 @@ abstract class BaseView<Controller extends BaseController>
   Widget buildBody(BuildContext context);
 
   BuildContext? buildContext;
-
 
   ///base build widget
   @override
@@ -66,6 +65,7 @@ abstract class BaseView<Controller extends BaseController>
   Widget _pageScaffold(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: resizeToAvoidBottomInset(),
+
       ///Status bar color for ios
       backgroundColor: scaffoldBackgroundColor(),
       key: globalKey,
@@ -97,7 +97,7 @@ abstract class BaseView<Controller extends BaseController>
 
   /// background color
   Color pageBackgroundColor() {
-    return _themeData.backgroundColor;
+    return _themeData.colorScheme.background;
   }
 
   Color scaffoldBackgroundColor() {
@@ -136,7 +136,6 @@ abstract class BaseView<Controller extends BaseController>
     return null;
   }
 
-
   bool get _isDark {
     final themeMode = applyThemeMode(buildContext);
     return themeMode != null
@@ -147,28 +146,25 @@ abstract class BaseView<Controller extends BaseController>
   _buildDataTemplate() {
     Widget container = Container();
     if (controller.pageState == PageState.LOADING) {
-      container = CustomLoadingView(
-        color: pageBackgroundColor(),
+      container = CustomLoadingWidget(
+        color: scaffoldBackgroundColor(),
         isDark: _isDark,
       );
     } else if (controller.pageState == PageState.FAILED) {
       container = CustomNetWorkErrorView(
-        color: pageBackgroundColor(),
+        color: scaffoldBackgroundColor(),
         onPressed: () => controller.onErrorPageNext(),
-        isDark: _isDark,
       );
     } else if (controller.pageState == PageState.NEED_LOGIN) {
-      container = CustomNoLoginView(
+      container = CustomNoLoginWidget(
         color: scaffoldBackgroundColor(),
         onPressed: () => AccountService.sharedInstance.pushToLoginPage(),
       );
     } else {
       container = CustomEmptyWidget(
-        color: pageBackgroundColor(),
+        color: scaffoldBackgroundColor(),
       );
     }
     return container;
   }
-
-
 }

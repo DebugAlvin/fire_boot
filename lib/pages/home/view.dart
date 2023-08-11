@@ -13,7 +13,7 @@ class HomePage extends BaseView<HomeLogic> {
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
     // TODO: implement appBar
-    return CustomAppBar(
+    return const CustomAppBar(
       appBarTitleText: '首页',
       showLeading: false,
     );
@@ -26,30 +26,19 @@ class HomePage extends BaseView<HomeLogic> {
       children: [
         CustomButton(
             onTap: () {
-              RouteUtil.pushToView(Routes.matchDetailPage);
+              RouteUtil.pushToView(Routes.testButtonPage);
             },
-            child: const Text('点击下一页（正常导航栏）')),
+            child: const Text('CustomButton样例')),
         CustomButton(
             onTap: () {
-              RouteUtil.pushToView(Routes.matchDetailPage);
+              RouteUtil.pushToView(Routes.testStatePage);
             },
-            child: const Text('点击下一页（透明导航栏）')),
-        CustomIconButton(
-          onTap: (){
-            CustomToast.show('成功', context);
-          },
-          name: '返回',
-          direction: Direction.left,
-          widgetHeight: 44,
-          widgetWidth: 70,
-          iconWidget: Center(
-            child: SvgPicture.asset(
-              'assets/svg/ic_close_outlined.svg',
-              width: 18,
-              height: 18,
-            ),
-          ),
-        )
+            child: const Text('页面状态样例')),
+        CustomButton(
+            onTap: () {
+              RouteUtil.pushToView(Routes.testCustomStatePage);
+            },
+            child: const Text('自定义页面状态样例')),
       ],
     );
   }

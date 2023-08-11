@@ -61,7 +61,7 @@ class CustomToast {
     Image? preIcon,
     double? verticalOffset,
     VoidCallback? onDismiss,
-    CustomToastGravity? gravity,
+    CustomToastGravity? gravity = CustomToastGravity.bottom,
     ThemeData? themeData,
   }) {
     final OverlayState? overlayState = Overlay.of(context);

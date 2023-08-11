@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'button/custom_button.dart';
 
-class CustomNoLoginView extends StatelessWidget {
+class CustomNoLoginWidget extends StatelessWidget {
   final double? width;
   final double? height;
   final AlignmentGeometry? alignment;
   final Color? color;
   final VoidCallback? onPressed;
 
-  const CustomNoLoginView(
+  const CustomNoLoginWidget(
       {super.key,
       this.width,
       this.height,
