@@ -102,7 +102,7 @@ ListView.builder(
 
 ## 手架项目说明
 ## 1.项目结构
-+ base（父类），通常是一些wiget的封装，如BaseView、CustomAppBar
++ base（父类），通常是一些wiget的封装，如BaseView
 + constant（常量），通常是一些app的域名、第三方sdk的key、button或text的样式
 + model（模型）通常是json模型，可配合插件jsonToDart自动生成
 + pages(页面)通常是ui页面，可配合getx插件生成
