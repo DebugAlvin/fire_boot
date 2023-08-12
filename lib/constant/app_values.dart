@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:fire_boot/services/branch/branch.dart';
+import 'app_branch_list.dart';
 
 abstract class AppValues {
   ///**********: app values : **********
@@ -24,6 +25,9 @@ abstract class AppValues {
   static const String privatePolicyUrl = 'https://www.baidu.com/';
   static const String userAgreementUrl = 'https://www.baidu.com/';
   static const String invitationFriendUrl = 'https://www.baidu.com/';
+
+  ///**********: Branch values : **********
+  static Branch defaultBranch = BranchList.dev;
 
   //**********: sdk values : **********
   static const String pangle_appId = "5345208";

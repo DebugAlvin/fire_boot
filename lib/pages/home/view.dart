@@ -58,7 +58,7 @@ class HomePage extends BaseView<HomeLogic> {
                   context: context,
                   title: 'APP更新',
                   remark: '备注',
-                  canForceUpdate: false,
+                  canForceUpdate: true,
                   controller: CustomUpdateController(),
                   onConfirm: () {});
             },

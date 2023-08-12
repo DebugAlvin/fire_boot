@@ -6,6 +6,7 @@ import 'package:fire_boot/model/mix_notify.dart';
 import 'package:fire_boot/model/page.dart';
 import 'package:fire_boot/model/report_type.dart';
 import 'package:fire_boot/model/user.dart';
+import 'package:fire_boot/services/branch/branch_service.dart';
 import 'package:fire_boot/utils/http/http_config.dart';
 import 'package:fire_boot/utils/http/http_engine.dart';
 import 'package:fire_boot/utils/http/http_response.dart';
@@ -34,55 +35,54 @@ class AppRequestService {
 
   AppRequestService() {
     String? proxy = SPUtil().get<String>(CacheKey.appProxy);
-    if(proxy == null || proxy == "") {
+    final branch = BranchService.instance;
+    if (proxy == null || proxy == "") {
       final config = HttpConfig(
-        AppValues.baseUrl,
+        branch.current.api_url,
         interceptors: [BusinessInterceptor()],
         format: DefaultHttpTransformer(),
         connectTimeout: 15 * 1000,
       );
       $engine = HttpEngine.instance(config);
     } else {
-      final config = HttpConfig(
-          AppValues.baseUrl,
+      final config = HttpConfig(branch.current.api_url,
           interceptors: [BusinessInterceptor()],
           format: DefaultHttpTransformer(),
           connectTimeout: 15 * 1000,
-          proxy: proxy
-      );
+          proxy: proxy);
       $engine = HttpEngine.instance(config);
     }
   }
 
-  void setProxy({required String? proxy, VoidCallback? onSuccess, VoidCallback? onFail}) {
+  void setProxy(
+      {required String? proxy, VoidCallback? onSuccess, VoidCallback? onFail}) {
+    final branch = BranchService.instance;
     try {
       HttpEngine.destroy();
       $engine = null;
-      if(proxy == null || proxy == "") {
+      if (proxy == null || proxy == "") {
         final config = HttpConfig(
-            AppValues.baseUrl,
-            interceptors: [BusinessInterceptor()],
-            format: DefaultHttpTransformer(),
-            connectTimeout: 15 * 1000,
+          branch.current.api_url,
+          interceptors: [BusinessInterceptor()],
+          format: DefaultHttpTransformer(),
+          connectTimeout: 15 * 1000,
         );
         $engine = HttpEngine.instance(config);
       } else {
-        final config = HttpConfig(
-            AppValues.baseUrl,
+        final config = HttpConfig(branch.current.api_url,
             interceptors: [BusinessInterceptor()],
             format: DefaultHttpTransformer(),
             connectTimeout: 15 * 1000,
-            proxy: proxy
-        );
+            proxy: proxy);
         $engine = HttpEngine.instance(config);
       }
 
       SPUtil().setString(CacheKey.appProxy, proxy!);
-      if(onSuccess != null) {
+      if (onSuccess != null) {
         onSuccess();
       }
-    } catch(e) {
-      if(onFail != null) {
+    } catch (e) {
+      if (onFail != null) {
         onFail();
       }
     }
@@ -216,7 +216,6 @@ class AppRequestService {
         data: params,
         options: Options(headers: generatorHeaderWithToken(token)));
 
-
     if (response.ok && response.statusCode == 200) {
       Map<String, dynamic> mapUser = {}
         ..addAll(response.data["userInfor"])
@@ -262,7 +261,6 @@ class AppRequestService {
     }
     return response;
   }
-
 
   /// 账号注销
   Future<HttpResponse> destroryAccount({
@@ -338,7 +336,7 @@ class AppRequestService {
     HttpResponse response =
         await $engine.execute(Method.POST, path, data: params);
     if (response.ok) {
-      if(response.statusCode == 200) {
+      if (response.statusCode == 200) {
         String token = response.data["access_token"];
         success(token);
       } else {
@@ -349,6 +347,4 @@ class AppRequestService {
     }
     return response;
   }
-
-
 }
