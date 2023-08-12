@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import '../../constant/app_values.dart';
 import '../../utils/widget_util.dart';
-import 'privacy_policy_dialog.dart';
+import '../../widget/custom_privacy_policy_dialog.dart';
 
 class PrivacyPolicyService {
   static const SP_PRIVACY_POLICY_CHECK = 'SP_PRIVACY_POLICY_CHECK';
@@ -31,7 +31,7 @@ class PrivacyPolicyService {
       barrierDismissible: false,
       useRootNavigator: false,
       builder: (BuildContext ctx) {
-        return PrivacyPolicyDialog(
+        return CustomPrivacyPolicyDialog(
           onConfirm: () async {
             SPUtil().setBool(SP_PRIVACY_POLICY_CHECK, true);
             RouteUtil.popView();

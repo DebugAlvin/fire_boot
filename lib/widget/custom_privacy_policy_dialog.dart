@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fire_boot/constant/app_themes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PrivacyPolicyDialog extends StatefulWidget {
-  const PrivacyPolicyDialog(
+class CustomPrivacyPolicyDialog extends StatefulWidget {
+  const CustomPrivacyPolicyDialog(
       {super.key,
       required this.onConfirm,
       required this.onCancel,
@@ -29,10 +29,10 @@ class PrivacyPolicyDialog extends StatefulWidget {
   final VoidCallback onCancel;
 
   @override
-  State<StatefulWidget> createState() => _PrivacyPolicyDialogState();
+  State<StatefulWidget> createState() => _CustomPrivacyPolicyDialogState();
 }
 
-class _PrivacyPolicyDialogState extends State<PrivacyPolicyDialog> {
+class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
