@@ -11,7 +11,7 @@ class CustomButtonThemeData {
       colorScheme: colorScheme,
     );
     defaultTheme.borderRadius =
-        const BorderRadius.all(Radius.circular(AppValues.smallRadius));
+        const BorderRadius.all(Radius.circular(AppValues.roundedButtonRadius));
     defaultTheme.disableTextColor = AppThemes.buttonDisableTextColor;
     defaultTheme.horizontalPadding = AppValues.defaultButtonHorizontalPadding;
     defaultTheme.verticalPadding = AppValues.defaultButtonVerticalPadding;

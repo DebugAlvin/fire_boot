@@ -7,7 +7,7 @@ class CustomColorScheme {
         isDark ? const ColorScheme.dark() : const ColorScheme.light();
     return colorScheme.copyWith(
       primary: AppThemes.primaryColor,
-      secondary: AppThemes.widgetColorWhite,
+      secondary: AppThemes.lightGray,
       background: isDark ? AppThemes.widgetColorDark : AppThemes.widgetColorWhite,
       onBackground: isDark ? AppThemes.widgetColorWhite : AppThemes.widgetColorDark,
       surface: isDark ? AppThemes.widgetColorDark : AppThemes.widgetColorWhite,
