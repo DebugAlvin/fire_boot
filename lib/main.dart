@@ -15,6 +15,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import 'generated/l10n.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   ///SPUtil必须启动时预初始化
@@ -31,15 +33,13 @@ void main() {
     //默认使用暗黑模式
     defaultTransition: Transition.cupertino,
     localizationsDelegates: const [
+      S.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
     ],
-    supportedLocales: const [
-      Locale('zh'),
-      Locale('en'),
-    ],
-    locale: const Locale('zh', 'CN'),
+    supportedLocales: S.delegate.supportedLocales,
+    // locale: const Locale('zh', 'CN'),
     initialBinding: SplashBinding(),
     home: SplashPage(
       onFinish: (context) async {

@@ -9,6 +9,7 @@ import 'package:fire_boot/widget/custom_toast.dart';
 import 'package:fire_boot/widget/update/custom_update_controller.dart';
 import 'package:fire_boot/widget/update/custom_update_dialog.dart';
 import 'package:flutter/material.dart';
+import '../../generated/l10n.dart';
 import 'logic.dart';
 
 class HomePage extends BaseView<HomeLogic> {
@@ -73,6 +74,8 @@ class HomePage extends BaseView<HomeLogic> {
               RouteUtil.pushToView(Routes.needLoginPage);
             },
             child: const Text('测试拦截器')),
+        
+        Text('国际化文本：${S.of(context).hello_text}')
       ],
     );
   }

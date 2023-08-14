@@ -1,6 +1,4 @@
 import 'package:fire_boot/services/event/event_service.dart';
-import 'package:get/get.dart';
-
 import 'custom_update_dialog.dart';
 
 class CustomUpdateController {

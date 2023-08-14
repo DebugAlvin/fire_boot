@@ -9,7 +9,7 @@ class MatchDetailPage extends BaseView<MatchDetailLogic> {
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
     // TODO: implement appBar
-    return CustomAppBar(
+    return const CustomAppBar(
       appBarTitleText: '比赛详情',
     );
   }
