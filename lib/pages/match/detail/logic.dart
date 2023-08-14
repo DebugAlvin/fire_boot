@@ -1,6 +1,6 @@
 import 'package:fire_boot/base/getx/base_controller.dart';
 import 'package:fire_boot/pages/home/logic.dart';
-import 'package:fire_boot/services/event2/event_service.dart';
+import 'package:fire_boot/services/event/event_service.dart';
 import 'package:get/get.dart';
 
 class MatchDetailLogic extends BaseController {

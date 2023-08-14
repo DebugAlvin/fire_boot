@@ -1,5 +1,5 @@
 import 'package:fire_boot/constant/app_values.dart';
-import 'package:fire_boot/services/event2/event_service.dart';
+import 'package:fire_boot/services/event/event_service.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/widget/button/custom_button.dart';

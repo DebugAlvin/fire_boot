@@ -1,8 +1,5 @@
 import 'package:fire_boot/base/getx/base_controller.dart';
-import 'package:fire_boot/services/event2/event_service.dart';
-import 'package:fire_boot/utils/widget_util.dart';
-import 'package:fire_boot/widget/custom_toast.dart';
-import 'package:get/get.dart';
+import 'package:fire_boot/services/event/event_service.dart';
 
 const kDidArticleCollectEvent = 'kDidArticleCollectEvent';
 

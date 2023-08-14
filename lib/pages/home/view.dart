@@ -9,7 +9,6 @@ import 'package:fire_boot/widget/custom_toast.dart';
 import 'package:fire_boot/widget/update/custom_update_controller.dart';
 import 'package:fire_boot/widget/update/custom_update_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'logic.dart';
 
 class HomePage extends BaseView<HomeLogic> {
@@ -68,6 +67,8 @@ class HomePage extends BaseView<HomeLogic> {
               ThemeService().switchTheme(ThemeMode.dark);
             },
             child: const Text('切换到暗黑模式')),
+
+        const SizedBox(width: 200, height: 200, child: Card()),
       ],
     );
   }
