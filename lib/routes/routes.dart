@@ -1,7 +1,10 @@
+import 'package:fire_boot/middleware/auth_middleware.dart';
 import 'package:fire_boot/pages/find/binding.dart';
 import 'package:fire_boot/pages/find/view.dart';
 import 'package:fire_boot/pages/home/binding.dart';
 import 'package:fire_boot/pages/home/view.dart';
+import 'package:fire_boot/pages/login/binding.dart';
+import 'package:fire_boot/pages/login/view.dart';
 import 'package:fire_boot/pages/main/binding.dart';
 import 'package:fire_boot/pages/main/view.dart';
 import 'package:fire_boot/pages/match/detail/binding.dart';
@@ -20,6 +23,8 @@ import 'package:fire_boot/pages/test/hud/binding.dart';
 import 'package:fire_boot/pages/test/hud/view.dart';
 import 'package:fire_boot/pages/test/life_cycle/binding.dart';
 import 'package:fire_boot/pages/test/life_cycle/view.dart';
+import 'package:fire_boot/pages/test/need_login/binding.dart';
+import 'package:fire_boot/pages/test/need_login/view.dart';
 import 'package:fire_boot/pages/test/state/binding.dart';
 import 'package:fire_boot/pages/test/state/view.dart';
 import 'package:fire_boot/pages/topic/binding.dart';
@@ -86,6 +91,9 @@ abstract class Routes {
   ///测试生命周期
   static const String testHUDPage = '/test/hud';
 
+  ///测试拦截器
+  static const String needLoginPage = '/need/login';
+
   ///页面合集
   static final routePage = [
     GetPage(
@@ -149,6 +157,18 @@ abstract class Routes {
       name: testHUDPage,
       page: () => TestHUDPage(),
       binding: TestHUDBinding(),
+    ),
+    GetPage(
+      name: loginPage,
+      page: () => LoginPage(),
+      transition: Transition.downToUp,
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: needLoginPage,
+      page: () => NeedLoginPage(),
+      binding: NeedLoginBinding(),
+      middlewares: [AuthMiddleware()],
     ),
   ];
 }

@@ -1,5 +1,7 @@
 import 'package:fire_boot/constant/app_cache_key.dart';
 import 'package:fire_boot/model/user.dart';
+import 'package:fire_boot/routes/routes.dart';
+import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/utils/sp_util.dart';
 import 'app_http/app_request_service.dart';
 
@@ -112,8 +114,8 @@ class AccountService {
     AccountService.sharedInstance.logoutUser();
   }
 
-  Future<void>pushToLoginPage() async {
-
+  Future<void> pushToLoginPage() async {
+    RouteUtil.pushToView(Routes.loginPage);
   }
 
   /// 退出登录

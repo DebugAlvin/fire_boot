@@ -68,7 +68,11 @@ class HomePage extends BaseView<HomeLogic> {
             },
             child: const Text('切换到暗黑模式')),
 
-        const SizedBox(width: 200, height: 200, child: Card()),
+        CustomButton(
+            onTap: () {
+              RouteUtil.pushToView(Routes.needLoginPage);
+            },
+            child: const Text('测试拦截器')),
       ],
     );
   }
