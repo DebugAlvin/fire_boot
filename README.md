@@ -76,7 +76,58 @@ ListView.builder(
 2. 使用view（视图）、logic（控制器）、binding（依赖）的项目结构
 3. 使用GetX代码生成工具生成模块选择easy模式，勾选addBinding、addLifecycle，
    另外，GetBuilder、Container等常用组建均可使用插件生成[插件使用指南](https://juejin.cn/post/7005003323753365517#heading-9)
+4. Page只是布局相关，所有逻辑写到logic里面
+<pre><code>
+class TestHUDPage extends BaseView<TestHUDLogic> {
+  TestHUDPage({Key? key}) : super(key: key);
 
+  @override
+  PreferredSizeWidget? appBar(BuildContext context) {
+    // TODO: implement appBar
+    return const CustomAppBar(
+      appBarTitleText: '测试HUD',
+    );
+  }
+
+  @override
+  Widget buildBody(BuildContext context) {
+    // TODO: implement buildBody
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: CustomSmallMainButton(
+            title: '测试Loading',
+            onTap: () => controller.onTestLoading(context),
+          ),
+        ),
+        const SizedBox(height: AppValues.defaultPadding,),
+        Center(
+          child: CustomSmallMainButton(
+            title: '测试Toast',
+            onTap: () => controller.onToast(context),
+          ),
+        ),
+      ],
+    );
+  }
+}
+</code></pre>
+
+<pre><code>
+class TestHUDLogic extends BaseController {
+  Future<void>onTestLoading(BuildContext context) async {
+    CustomProgressHUD.show(context,content: '正在加载...');
+    Future.delayed(const Duration(seconds: 5),(){
+      CustomProgressHUD.dismiss(context);
+    });
+  }
+
+  Future<void>onToast(BuildContext context) async {
+    CustomToast.show('测试Toast', context);
+  }
+}
+</code></pre>
 ## 代码规范
 + if else使用大括号，尽可能不省略；
 
