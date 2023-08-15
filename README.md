@@ -76,7 +76,7 @@ ListView.builder(
 2. 使用view（视图）、logic（控制器）、binding（依赖）的项目结构
 3. 使用GetX代码生成工具生成模块选择easy模式，勾选addBinding、addLifecycle，
    另外，GetBuilder、Container等常用组建均可使用插件生成[插件使用指南](https://juejin.cn/post/7005003323753365517#heading-9)
-4. Page只是布局相关，所有逻辑写到logic里面
+4. 业务逻辑尽可能写到controller里面，page和view只是布局
 <pre><code>
 class TestHUDPage extends BaseView<TestHUDLogic> {
   TestHUDPage({Key? key}) : super(key: key);
