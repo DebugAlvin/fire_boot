@@ -7,7 +7,6 @@ import 'package:fire_boot/widget/button/cutom_big_main_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'custom_update_controller.dart';
 
 const kAppUpdateProgressEvent = 'kAppUpdateProgressEvent';

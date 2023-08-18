@@ -6,21 +6,7 @@ abstract class AppValues {
   ///**********: app values : **********
   static const String appName = '搜视短视频';
   static const String logo = 'assets/images/3.0x/application_icon.png';
-  static const bool debugModel = false;
-  // static const String baseUrl = 'https://api.ikqiu.com/api';
-  static const String baseUrl = 'http://47.114.109.184:9980/api';
-  ///bb哥
-  // static const String baseUrl = 'http://192.168.0.134:8080/api';
-  /// 浩哥
-  // static const String baseUrl = 'http://192.168.0.200:8080/api';
-  /// 陈肯
-  // static const String baseUrl = 'http://192.168.0.121:8080/api';
-  /// 陈虹霖
-  // static const String baseUrl = 'http://192.168.0.115:8080/api';
-  /// 杨秀辉
-  // static const String baseUrl = 'http://192.168.0.119:8080/api';
-  // STATIC const String baseUrl = 'http://192.168.0.110:8080/api';
-  // static const String baseUrl = 'http://192.168.0.128:8080/api';
+
   static const String registerPolicyUrl = 'https://www.baidu.com/';
   static const String privatePolicyUrl = 'https://www.baidu.com/';
   static const String userAgreementUrl = 'https://www.baidu.com/';
@@ -32,11 +18,9 @@ abstract class AppValues {
   //**********: sdk values : **********
   static const String pangle_appId = "5345208";
   static const String pangle_splashId = "887982084";
-
   static final String jPushKey = Platform.isIOS
       ? "f18d9cf23ba77b36e4d526a8"
       : "f18d9cf23ba77b36e4d526a8";
-
   static final String channel = Platform.isIOS
       ? "ios"
       : "android";

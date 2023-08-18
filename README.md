@@ -77,7 +77,7 @@ ListView.builder(
 3. 使用GetX代码生成工具生成模块选择easy模式，勾选addBinding、addLifecycle，
    另外，GetBuilder、Container等常用组建均可使用插件生成[插件使用指南](https://juejin.cn/post/7005003323753365517#heading-9)
 4. 业务逻辑尽可能写到controller里面，page和view只是布局
-<pre><code>
+<pre><code>[Time Machine.app](..%2F..%2F..%2F..%2F..%2FSystem%2FApplications%2FTime%20Machine.app)
 class TestHUDPage extends BaseView<TestHUDLogic> {
   TestHUDPage({Key? key}) : super(key: key);
 
