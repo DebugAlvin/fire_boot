@@ -2,9 +2,9 @@ import 'package:fire_boot/model/temp_im_token.dart';
 import 'package:fire_boot/services/device_service.dart';
 import 'package:fire_boot/utils/http/http_engine.dart';
 import 'package:fire_boot/utils/http/http_response.dart';
-import '../app_request_service.dart';
+import '../api_service.dart';
 
-extension ImRequestService on AppRequestService {
+extension IMApiService on ApiService {
   Future<HttpResponse> getImToken({
     required Success<String> success,
     required Fail fail,

@@ -1,9 +1,9 @@
 import 'package:fire_boot/constant/app_cache_key.dart';
 import 'package:fire_boot/model/user.dart';
 import 'package:fire_boot/routes/routes.dart';
+import 'package:fire_boot/services/api/api_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/utils/sp_util.dart';
-import 'app_http/app_request_service.dart';
 
 /// 处理账号登陆相关的问题
 class AccountService {
@@ -95,7 +95,7 @@ class AccountService {
   Future<void> refreshUserInfo() async {
     String token = AccountService.sharedInstance.currentUser?.token ?? '';
     if (token.isEmpty) return;
-    final response = await AppRequestService.instance.getUserInfo(
+    final response = await ApiService.instance.getUserInfo(
         token: token,
         success: (user) {
           AccountService.sharedInstance.loginUser(user);

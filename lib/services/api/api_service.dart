@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
-import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/model/anchor_infor.dart';
 import 'package:fire_boot/model/mix_notify.dart';
 import 'package:fire_boot/model/page.dart';
@@ -21,17 +20,17 @@ import 'default_http_transformer.dart';
 typedef Success<T> = Function(T data);
 typedef Fail = Function(int code, String msg);
 
-class AppRequestService {
+class ApiService {
   late var $engine;
 
-  static AppRequestService? _instance;
+  static ApiService? _instance;
 
-  static AppRequestService _getInstance() {
-    _instance ??= AppRequestService();
+  static ApiService _getInstance() {
+    _instance ??= ApiService();
     return _instance!;
   }
 
-  static AppRequestService get instance => _getInstance();
+  static ApiService get instance => _getInstance();
 
   AppRequestService() {
     String? proxy = SPUtil().get<String>(CacheKey.appProxy);
