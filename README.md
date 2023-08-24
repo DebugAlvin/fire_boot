@@ -160,6 +160,7 @@ class TestHUDLogic extends BaseController {
 + services(业务逻辑层)，通常是一个单例，针对接口请求、数据缓存等业务逻辑进行封装
 + utils(工具类)通常是一些api或三方库的简单封装
 + widget（widget封装）一些常用控件
++ middleware（路由权鉴）拦截登录校验弹窗逻辑等
 ## 2.设置主题色
 + 在main.dart里面设置GetMaterialApp
 <pre><code>
