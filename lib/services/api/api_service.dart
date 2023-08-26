@@ -35,22 +35,12 @@ class ApiService {
   AppRequestService() {
     String? proxy = SPUtil().get<String>(CacheKey.appProxy);
     final branch = BranchService.instance;
-    if (proxy == null || proxy == "") {
-      final config = HttpConfig(
-        branch.current.api_url,
+    final config = HttpConfig(branch.current.api_url,
         interceptors: [BusinessInterceptor()],
         format: DefaultHttpTransformer(),
         connectTimeout: 15 * 1000,
-      );
-      $engine = HttpEngine.instance(config);
-    } else {
-      final config = HttpConfig(branch.current.api_url,
-          interceptors: [BusinessInterceptor()],
-          format: DefaultHttpTransformer(),
-          connectTimeout: 15 * 1000,
-          proxy: proxy);
-      $engine = HttpEngine.instance(config);
-    }
+        proxy: proxy);
+    $engine = HttpEngine.instance(config);
   }
 
   void setProxy(
@@ -59,23 +49,12 @@ class ApiService {
     try {
       HttpEngine.destroy();
       $engine = null;
-      if (proxy == null || proxy == "") {
-        final config = HttpConfig(
-          branch.current.api_url,
+      final config = HttpConfig(branch.current.api_url,
           interceptors: [BusinessInterceptor()],
           format: DefaultHttpTransformer(),
           connectTimeout: 15 * 1000,
-        );
-        $engine = HttpEngine.instance(config);
-      } else {
-        final config = HttpConfig(branch.current.api_url,
-            interceptors: [BusinessInterceptor()],
-            format: DefaultHttpTransformer(),
-            connectTimeout: 15 * 1000,
-            proxy: proxy);
-        $engine = HttpEngine.instance(config);
-      }
-
+          proxy: proxy);
+      $engine = HttpEngine.instance(config);
       SPUtil().setString(CacheKey.appProxy, proxy!);
       if (onSuccess != null) {
         onSuccess();
