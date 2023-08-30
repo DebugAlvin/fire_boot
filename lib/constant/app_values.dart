@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:fire_boot/services/branch/branch.dart';
-import 'app_branch_list.dart';
 
 abstract class AppValues {
   ///**********: app values : **********
