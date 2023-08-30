@@ -64,7 +64,7 @@ class TestButtonPage extends BaseView<TestButtonLogic> {
             const SizedBox(
               height: AppValues.defaultPadding,
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomSmallMainButton(
@@ -95,7 +95,7 @@ class TestButtonPage extends BaseView<TestButtonLogic> {
             const SizedBox(
               height: AppValues.defaultPadding,
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomSmallOutlineButton(title: '小边框按钮'),
