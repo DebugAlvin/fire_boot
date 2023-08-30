@@ -72,7 +72,7 @@ ListView.builder(
 - [喜马拉雅PC案例改善套娃地狱问题](https://blog.51cto.com/u_13689323/4940447)
 - [为什么 Flutter钟爱 装饰器模式和组合模式](https://www.jianshu.com/p/5b630ae4d832)
 ## GetX开发规范
-1. 尽可能使用GetBuilder(主动状态管理)而不使用obx(被动动状态管理)
+1. 尽可能使用obx(被动动状态管理)而不使用GetBuilder(主动状态管理)
 2. 使用view（视图）、logic（控制器）、binding（依赖）的项目结构
 3. 使用GetX代码生成工具生成模块选择easy模式，勾选addBinding、addLifecycle，
    另外，GetBuilder、Container等常用组建均可使用插件生成[插件使用指南](https://juejin.cn/post/7005003323753365517#heading-9)
