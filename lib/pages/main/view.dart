@@ -8,6 +8,7 @@ import 'package:fire_boot/pages/message/view.dart';
 import 'package:fire_boot/pages/mine/logic.dart';
 import 'package:fire_boot/pages/mine/view.dart';
 import 'package:fire_boot/pages/topic/view.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'logic.dart';
@@ -40,7 +41,7 @@ class MainPage extends BaseView<MainLogic> {
       },
       selectedItemColor: AppThemes.textPrimaryColorDark,
       unselectedItemColor: AppThemes.lightGray,
-      selectedIconColor: AppThemes.tabBarIconColorSelected,
+      selectedIconColor: ThemeService().theme.primaryColor,
       unselectedIconColor: AppThemes.tabBarIconColorUnselected,
       initSelectdIndex: 0,
       color: AppThemes.appBarIconColorWhite,

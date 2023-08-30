@@ -1,3 +1,4 @@
+import 'package:fire_boot/services/event/event_service.dart';
 import 'package:fire_boot/services/theme/theme_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,7 @@ class ThemeService {
   ThemeService._internal() {
     // 初始化
     final colorValue = _loadThemeColorFromBox();
-    primaryColor = Color(colorValue);
+    primaryColor = colorValue;
   }
 
   // 静态、同步、私有访问点
@@ -85,17 +86,21 @@ class ThemeService {
     }
   }
 
+  List<ThemeColor> get themeColors {
+    return AppThemes.primaryColors;
+  }
+
   bool get isDarkMode => Get.isDarkMode;
 
   ///获取当前的主题
   ThemeData get theme {
     ThemeMode themeMode = this.themeMode;
     if (themeMode == ThemeMode.system) {
-      return Get.isDarkMode ? ThemeService.darkTheme : ThemeService.lightTheme;
+      return Get.isDarkMode ? darkTheme : lightTheme;
     } else if (themeMode == ThemeMode.dark) {
-      return ThemeService.darkTheme;
+      return darkTheme;
     } else {
-      return ThemeService.lightTheme;
+      return lightTheme;
     }
   }
 
@@ -106,21 +111,20 @@ class ThemeService {
   _saveThemeToBox(int themeMode) => _box.setInt(_key, themeMode);
 
   /// 获取用户暗黑模式设置的缓存配置
-  int _loadThemeColorFromBox() {
-    int? colorValue = _box.get(_colorKey);
-    if(colorValue != null) {
-      for(ThemeColor color in AppThemes.primaryColors) {
-        if(color.value.value == colorValue) {
-          return colorValue;
+  Color _loadThemeColorFromBox() {
+    String? label = _box.get(_colorKey);
+    if (label != null) {
+      for (ThemeColor color in AppThemes.primaryColors) {
+        if (color.key == label) {
+          return color.value;
         }
       }
     }
-    return AppThemes.primaryColors[0].value.value;
+    return AppThemes.primaryColors[0].value;
   }
 
   /// 保存用户暗黑模式设置
-  _saveThemeColorToBox(int value) => _box.setInt(_colorKey, themeMode);
-
+  _saveThemeColorToBox(String label) => _box.setString(_colorKey, label);
 
   /// 更新主题
   void _updateTheme() {
@@ -131,7 +135,7 @@ class ThemeService {
 
   /// 切换主题
   Future<void> switchTheme(ThemeMode mode) async {
-    Get.changeThemeMode(mode);
+    // Get.changeThemeMode(mode);
     _saveThemeToBox(mode.index);
 
     /// 然后使用GetX 提供的切换方式,进行动态更新就可以
@@ -143,74 +147,87 @@ class ThemeService {
   }
 
   /// 切换主题颜色
-  void switchThemeColor(ThemeColor color) {
-    _saveThemeColorToBox(color.value.value);
+  Future<void> switchThemeColor(ThemeColor color) async {
+    await _saveThemeColorToBox(color.key);
+    primaryColor = color.value;
+    Get.changeThemeMode(themeMode);
+    Get.changeTheme(theme);
+    /// 这个比较重要,如果不使用这个,可能会导致主题没有及时更新
+    _updateTheme();
   }
 
-  static final lightTheme = ThemeData.light().copyWith(
-    // backgroundColor: AppThemes.cardColorLight, /废弃，使用colorScheme.background
-    colorScheme: CustomColorScheme.defaultColorScheme(isDark: false),
-    scaffoldBackgroundColor: AppThemes.pageLightBackground,
-    primaryColor: AppThemes.primaryColor,
-    shadowColor: AppThemes.colorShadow,
-    focusColor: AppThemes.colorAccent,
-    dividerColor: AppThemes.dividerColor,
-    hintColor: AppThemes.hintColor,
-    buttonTheme: CustomButtonThemeData.defaultTheme(
-        CustomColorScheme.defaultColorScheme(isDark: false)),
-    dividerTheme: const DividerThemeData(
-      color: AppThemes.dividerColor,
-      indent: AppValues.defaultPadding,
-      endIndent: AppValues.defaultPadding,
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: AppButtonStyles.getTransparentStyle(),
-    ),
 
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppThemes.appBarColorWhite,
-      iconTheme: IconThemeData(color: AppThemes.appBarIconColorDark),
-      titleTextStyle:
-          TextStyle(color: AppThemes.appBarIconColorDark, fontSize: 16),
-    ),
-    // 文本的颜色与卡片和画布的颜色形成对比
-    textTheme: ThemeService.textTheme(false),
-    // 与primaryColor形成对比的文本主题,可以直接使用暗黑模式的配置
-    primaryTextTheme: ThemeService.textTheme(false),
-    //tabbr
-    tabBarTheme: ThemeService.tabBarTheme(false),
-  );
+  ThemeData get lightTheme {
+    return ThemeData(
+      brightness: Brightness.light,
+      // backgroundColor: AppThemes.cardColorLight, /废弃，使用colorScheme.background
+      colorScheme: CustomColorScheme.defaultColorScheme(isDark: false),
+      scaffoldBackgroundColor: AppThemes.pageLightBackground,
+      primaryColor: ThemeService.instance.primaryColor,
+      shadowColor: AppThemes.colorShadow,
+      focusColor: AppThemes.colorAccent,
+      dividerColor: AppThemes.dividerColor,
+      hintColor: AppThemes.hintColor,
+      buttonTheme: CustomButtonThemeData.defaultTheme(
+          CustomColorScheme.defaultColorScheme(isDark: false)),
+      dividerTheme: const DividerThemeData(
+        color: AppThemes.dividerColor,
+        indent: AppValues.defaultPadding,
+        endIndent: AppValues.defaultPadding,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: AppButtonStyles.getTransparentStyle(),
+      ),
 
-  static final darkTheme = ThemeData.dark().copyWith(
-    colorScheme: CustomColorScheme.defaultColorScheme(isDark: true),
-    scaffoldBackgroundColor: AppThemes.pageDarkBackground,
-    primaryColor: AppThemes.primaryColor,
-    shadowColor: AppThemes.colorShadow,
-    focusColor: AppThemes.colorAccent,
-    hintColor: AppThemes.hintColor,
-    dividerColor: AppThemes.dividerColor,
-    buttonTheme: CustomButtonThemeData.defaultTheme(
-        CustomColorScheme.defaultColorScheme(isDark: true)),
-    dividerTheme: const DividerThemeData(
-      color: AppThemes.dividerColor,
-      indent: AppValues.defaultPadding,
-      endIndent: AppValues.defaultPadding,
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: AppButtonStyles.getTransparentStyle(),
-    ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppThemes.appBarColorDark,
-      iconTheme: IconThemeData(color: AppThemes.appBarIconColorWhite),
-      titleTextStyle:
-          TextStyle(color: AppThemes.appBarTextColorWhite, fontSize: 16),
-    ),
-    // 文本的颜色与卡片和画布的颜色形成对比
-    textTheme: ThemeService.textTheme(true),
-    // 与primaryColor形成对比的文本主题,可以直接使用暗黑模式的配置
-    primaryTextTheme: ThemeService.textTheme(false),
-    tabBarTheme: ThemeService.tabBarTheme(true),
-  );
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppThemes.appBarColorWhite,
+        iconTheme: IconThemeData(color: AppThemes.appBarIconColorDark),
+        titleTextStyle:
+        TextStyle(color: AppThemes.appBarIconColorDark, fontSize: 16),
+      ),
+      // 文本的颜色与卡片和画布的颜色形成对比
+      textTheme: ThemeService.textTheme(false),
+      // 与primaryColor形成对比的文本主题,可以直接使用暗黑模式的配置
+      primaryTextTheme: ThemeService.textTheme(false),
+      //tabbr
+      tabBarTheme: ThemeService.tabBarTheme(false),
+    );
+  }
+
+  ThemeData get darkTheme {
+    return ThemeData(
+      brightness: Brightness.dark,
+      colorScheme: CustomColorScheme.defaultColorScheme(isDark: true),
+      scaffoldBackgroundColor: AppThemes.pageDarkBackground,
+      primaryColor: ThemeService.instance.primaryColor,
+      shadowColor: AppThemes.colorShadow,
+      focusColor: AppThemes.colorAccent,
+      hintColor: AppThemes.hintColor,
+      dividerColor: AppThemes.dividerColor,
+      buttonTheme: CustomButtonThemeData.defaultTheme(
+          CustomColorScheme.defaultColorScheme(isDark: true)),
+      dividerTheme: const DividerThemeData(
+        color: AppThemes.dividerColor,
+        indent: AppValues.defaultPadding,
+        endIndent: AppValues.defaultPadding,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: AppButtonStyles.getTransparentStyle(),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppThemes.appBarColorDark,
+        iconTheme: IconThemeData(color: AppThemes.appBarIconColorWhite),
+        titleTextStyle:
+        TextStyle(color: AppThemes.appBarTextColorWhite, fontSize: 16),
+      ),
+      // 文本的颜色与卡片和画布的颜色形成对比
+      textTheme: ThemeService.textTheme(true),
+      // 与primaryColor形成对比的文本主题,可以直接使用暗黑模式的配置
+      primaryTextTheme: ThemeService.textTheme(false),
+      tabBarTheme: ThemeService.tabBarTheme(true),
+    );
+  }
+
 
   /// @method : textTheme
   /// @description :AppTextStyles文本主题颜色配置

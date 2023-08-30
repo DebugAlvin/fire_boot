@@ -128,6 +128,6 @@ class CustomSmallMainButton extends StatelessWidget {
   Color _getBackgroundColor(ButtonThemeData theme) {
     return backgroundColor ??
         theme.colorScheme?.primary ??
-        AppThemes.primaryColor;
+        ThemeService().theme.colorScheme.primary;
   }
 }

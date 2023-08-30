@@ -25,10 +25,10 @@ class AppThemes {
 
   ///theme color list
   static List<ThemeColor> primaryColors = [
-    ThemeColor('默认',goldOrange),
-    ThemeColor('红色',redCard),
-    ThemeColor('蓝色',skyBlue),
-    ThemeColor('绿色',grassGreen),
+    ThemeColor('默认',goldOrange,'normalColor'),
+    ThemeColor('红色',redCard,'redColor'),
+    ThemeColor('蓝色',skyBlue,'blueColor'),
+    ThemeColor('绿色',grassGreen,'greenColor'),
   ];
   ///Scaffold的默认颜色典型Material应用程序或应用程序内页面的背景颜色
   static const pageLightBackground = Color(0xFFF7F7FC);//浅色风格
@@ -37,7 +37,7 @@ class AppThemes {
   ///比如FloatingButton、TextField、Cursor、ProgressBar、Selection、Links等具体交互性的颜色
   static const Color colorAccent = Color(0xFFFC9300);
   ///主题颜色，app的主要颜色，即整个屏幕和所有控件的主要颜色，首选颜色。
-  static const Color primaryColor = bloodRed;
+  // static const Color primaryColor = bloodRed;
   ///Material默认长按波纹颜色
   static const Color rippleColor = Color(0x33E2E3E8);
   ///阴影颜色

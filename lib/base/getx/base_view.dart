@@ -109,7 +109,7 @@ abstract class BaseView<Controller extends BaseController>
   }
 
   ThemeData get _themeData {
-    return _isDark ? ThemeService.darkTheme : ThemeService.lightTheme;
+    return _isDark ? ThemeService.instance.darkTheme : ThemeService.instance.lightTheme;
   }
 
   ///Default FloatingActionButton

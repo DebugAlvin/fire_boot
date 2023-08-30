@@ -3,7 +3,8 @@ import 'package:fire_boot/pages/splash/binding.dart';
 import 'package:fire_boot/pages/splash/view.dart';
 import 'package:fire_boot/routes/routes.dart';
 import 'package:fire_boot/services/account_service.dart';
-import 'package:fire_boot/services/theme/theme_provider.dart';
+import 'package:fire_boot/services/event/event_service.dart';
+import 'package:fire_boot/services/theme/theme_color.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/services/ulog_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
@@ -47,26 +48,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final Widget app = MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ],
-        child: Consumer<ThemeProvider>(
-          builder: (_, ThemeProvider provider, __) {
-            return _buildMaterialApp(provider);
-          },
-        ));
-    return app;
+    return _buildMaterialApp();
   }
 
-  Widget _buildMaterialApp(ThemeProvider provider) {
+  Widget _buildMaterialApp() {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorObservers: [CustomRouteListenWidget.routeObserver],
       initialRoute: '/',
       getPages: [...Routes.routePage],
-      theme: ThemeService.lightTheme,
-      darkTheme: ThemeService.darkTheme,
+      theme: ThemeService.instance.lightTheme,
+      darkTheme: ThemeService.instance.darkTheme,
       themeMode: ThemeService.instance.themeMode,
       defaultTransition: Transition.cupertino,
       localizationsDelegates: const [

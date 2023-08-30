@@ -64,7 +64,7 @@ Future<int?> showCustomBottomSheet({
                   height: itemHeight,
                   child: Text(
                     '取消',
-                    style: ThemeService.lightTheme.textTheme.bodyMedium,
+                    style: ThemeService.instance.lightTheme.textTheme.bodyMedium,
                   ),
                 ),
               ),
@@ -108,7 +108,7 @@ Widget _actionItem({
         height: height,
         child: Text(
           title,
-          style: ThemeService.lightTheme.textTheme.bodyMedium,
+          style: ThemeService.instance.lightTheme.textTheme.bodyMedium,
         ),
       ),
 

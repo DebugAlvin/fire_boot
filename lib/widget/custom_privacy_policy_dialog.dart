@@ -88,7 +88,7 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
                           child: Text(
                             "《注册服务协议》",
                             style: TextStyle(
-                                fontSize: 14.w, color: AppThemes.primaryColor),
+                                fontSize: 14.w, color: ThemeService().theme.colorScheme.primary),
                           ),
                         ),
                         Text(
@@ -105,7 +105,7 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
                           child: Text(
                             "《隐私政策》",
                             style: TextStyle(
-                                fontSize: 14.w, color: AppThemes.primaryColor),
+                                fontSize: 14.w, color: ThemeService().theme.colorScheme.primary),
                           ),
                         ),
                       ],

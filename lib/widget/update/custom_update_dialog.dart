@@ -54,7 +54,7 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
   Widget build(BuildContext context) {
     // TODO: implement build
     final defaultTheme = widget.themeData ?? ThemeService().theme;
-    final linghtTheme = ThemeService.lightTheme;
+    final lightTheme = ThemeService.instance.lightTheme;
     return WillPopScope(
       child: Material(
         color: Colors.transparent,
@@ -73,7 +73,7 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
                     height: 400.w,
                     padding: EdgeInsets.only(top: 95.w),
                     decoration: BoxDecoration(
-                        color: linghtTheme.colorScheme.surface,
+                        color: lightTheme.colorScheme.surface,
                         borderRadius: BorderRadius.all(Radius.circular(8.w))),
                     child: Column(
                       children: [

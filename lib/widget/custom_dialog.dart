@@ -22,14 +22,14 @@ Future<bool?> showCustomDialog({
       titlePadding: const EdgeInsets.only(top: 37),
       contentPadding: const EdgeInsets.only(left: 25, right: 25, top: 25),
       backgroundColor: AppThemes.pageLightBackground,
-      titleStyle: ThemeService.lightTheme.textTheme.titleSmall,
+      titleStyle: ThemeService.instance.lightTheme.textTheme.titleSmall,
       confirm: Padding(
         padding: const EdgeInsets.only(top: AppValues.smallPadding,bottom: AppValues.defaultPadding),
         child: Column(
           children: [
             _buildButton(
                 title: confirmTitle,
-                color: AppThemes.primaryColor,
+                color: ThemeService().theme.colorScheme.primary,
                 textColor: AppThemes.textPrimaryColorWhite,
                 onPressed: () {
                   result = true;
@@ -48,7 +48,7 @@ Future<bool?> showCustomDialog({
           ],
         ),
       ),
-      content: Text(content,style: ThemeService.lightTheme.textTheme.bodySmall,));
+      content: Text(content,style: ThemeService.instance.lightTheme.textTheme.bodySmall,));
   return result;
 }
 
