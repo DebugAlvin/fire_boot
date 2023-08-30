@@ -1,3 +1,4 @@
+import 'package:fire_boot/services/theme/theme_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fire_boot/utils/sp_util.dart';
@@ -37,6 +38,8 @@ class ThemeService {
   // 私有构造函数
   ThemeService._internal() {
     // 初始化
+    final colorValue = _loadThemeColorFromBox();
+    primaryColor = Color(colorValue);
   }
 
   // 静态、同步、私有访问点
@@ -45,8 +48,10 @@ class ThemeService {
     return _instance!;
   }
 
+  late Color primaryColor;
   final _box = SPUtil();
   final _key = 'ThemeMode';
+  final _colorKey = 'ThemeColor';
 
   ///用户没有在App设置过主题方案时的默认配置方案，这里设置了Dark，
   ///通常情况下大部分App应该使用Get.isDarkMode ? AppThemes.dark : AppThemes.light，
@@ -94,11 +99,28 @@ class ThemeService {
     }
   }
 
-  /// 获取用户设置的缓存配置
+  /// 获取用户暗黑模式设置的缓存配置
   int? _loadThemeFromBox() => _box.get(_key);
 
-  /// 保存用户设置
+  /// 保存用户暗黑模式设置
   _saveThemeToBox(int themeMode) => _box.setInt(_key, themeMode);
+
+  /// 获取用户暗黑模式设置的缓存配置
+  int _loadThemeColorFromBox() {
+    int? colorValue = _box.get(_colorKey);
+    if(colorValue != null) {
+      for(ThemeColor color in AppThemes.primaryColors) {
+        if(color.value.value == colorValue) {
+          return colorValue;
+        }
+      }
+    }
+    return AppThemes.primaryColors[0].value.value;
+  }
+
+  /// 保存用户暗黑模式设置
+  _saveThemeColorToBox(int value) => _box.setInt(_colorKey, themeMode);
+
 
   /// 更新主题
   void _updateTheme() {
@@ -108,7 +130,7 @@ class ThemeService {
   }
 
   /// 切换主题
-  void switchTheme(ThemeMode mode) {
+  Future<void> switchTheme(ThemeMode mode) async {
     Get.changeThemeMode(mode);
     _saveThemeToBox(mode.index);
 
@@ -118,6 +140,11 @@ class ThemeService {
 
     /// 这个比较重要,如果不使用这个,可能会导致主题没有及时更新
     _updateTheme();
+  }
+
+  /// 切换主题颜色
+  void switchThemeColor(ThemeColor color) {
+    _saveThemeColorToBox(color.value.value);
   }
 
   static final lightTheme = ThemeData.light().copyWith(

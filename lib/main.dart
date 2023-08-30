@@ -3,9 +3,9 @@ import 'package:fire_boot/pages/splash/binding.dart';
 import 'package:fire_boot/pages/splash/view.dart';
 import 'package:fire_boot/routes/routes.dart';
 import 'package:fire_boot/services/account_service.dart';
+import 'package:fire_boot/services/theme/theme_provider.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/services/ulog_service.dart';
-import 'package:fire_boot/utils/hud/progress_hud.dart';
 import 'package:fire_boot/utils/route_util.dart';
 import 'package:fire_boot/utils/sp_util.dart';
 import 'package:fire_boot/widget/custom_route_listen_widget.dart';
@@ -13,46 +13,81 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
-
+import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ///SPUtil必须启动时预初始化
-  SPUtil.perInit();
+  await SPUtil.perInit();
   _initUI();
-  runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    navigatorObservers: [CustomRouteListenWidget.routeObserver],
-    initialRoute: '/',
-    getPages: [...Routes.routePage],
-    theme: ThemeService.lightTheme,
-    darkTheme: ThemeService.darkTheme,
-    themeMode: ThemeService.instance.themeMode,
-    //默认使用暗黑模式
-    defaultTransition: Transition.cupertino,
-    localizationsDelegates: const [
-      S.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
-    ],
-    supportedLocales: S.delegate.supportedLocales,
-    // locale: const Locale('zh', 'CN'),
-    initialBinding: SplashBinding(),
-    home: SplashPage(
-      onFinish: (context) async {
-        _initThirdSDK();
-        await AccountService().initAsync();
-        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-        Future.delayed(const Duration(seconds: 1), () {
-          RouteUtil.pushToView(Routes.mainPage, offAll: true);
-        });
-      },
-    ),
-    builder: ProgressHUD.builder(),
-  ));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    final Widget app = MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ],
+        child: Consumer<ThemeProvider>(
+          builder: (_, ThemeProvider provider, __) {
+            return _buildMaterialApp(provider);
+          },
+        ));
+    return app;
+  }
+
+  Widget _buildMaterialApp(ThemeProvider provider) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      navigatorObservers: [CustomRouteListenWidget.routeObserver],
+      initialRoute: '/',
+      getPages: [...Routes.routePage],
+      theme: ThemeService.lightTheme,
+      darkTheme: ThemeService.darkTheme,
+      themeMode: ThemeService.instance.themeMode,
+      defaultTransition: Transition.cupertino,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      initialBinding: SplashBinding(),
+      home: SplashPage(
+        onFinish: (context) async {
+          _initThirdSDK();
+          await AccountService().initAsync();
+          Future.delayed(const Duration(seconds: 1), () {
+            RouteUtil.pushToView(Routes.mainPage, offAll: true);
+          });
+        },
+      ),
+    );
+  }
 }
 
 void _initThirdSDK() async {
@@ -75,25 +110,6 @@ void _initThirdSDK() async {
   //     RouteUtil.pushToView(Routes.mainPage, offAll: true);
   //   }
   // });
-}
-
-void _showSplashAdView() {
-  // showDialog(
-  //   context: WidgetUtils.getCurrentContext()!,
-  //   barrierDismissible: false,
-  //   barrierColor: Colors.transparent,
-  //   useRootNavigator: false,
-  //   useSafeArea: false,
-  //   builder: (BuildContext ctx) {
-  //     return AdsWidget(
-  //       bottomHeight: bottomHeight,
-  //       splashId: AppValues.pangle_splashId,
-  //       onFinish: () {
-  //         RouteUtil.pushToView(Routes.mainPage, offAll: true);
-  //       },
-  //     );
-  //   },
-  // );
 }
 
 void _initUI() {

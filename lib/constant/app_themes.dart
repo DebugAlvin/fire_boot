@@ -1,3 +1,4 @@
+import 'package:fire_boot/services/theme/theme_color.dart';
 import 'package:flutter/material.dart';
 
 /// @class : AppThemes
@@ -22,7 +23,13 @@ class AppThemes {
   static const yolkYello = Color(0xFFFFF9E6);
   static const matchGreen = Color(0xFF426729);
 
-  ///theme color
+  ///theme color list
+  static List<ThemeColor> primaryColors = [
+    ThemeColor('默认',goldOrange),
+    ThemeColor('红色',redCard),
+    ThemeColor('蓝色',skyBlue),
+    ThemeColor('绿色',grassGreen),
+  ];
   ///Scaffold的默认颜色典型Material应用程序或应用程序内页面的背景颜色
   static const pageLightBackground = Color(0xFFF7F7FC);//浅色风格
   static const pageDarkBackground = Color(0xFF010101);//暗黑风格

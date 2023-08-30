@@ -63,12 +63,25 @@ class HomePage extends BaseView<HomeLogic> {
                   onConfirm: () {});
             },
             child: const Text('更新弹窗')),
-        CustomButton(
-            onTap: () {
-              ThemeService().switchTheme(ThemeMode.dark);
-            },
-            child: const Text('切换到暗黑模式')),
-
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text('开启暗黑模式'),
+            Switch(value: ThemeService.instance.isDarkMode, onChanged: (value){
+              if(value){
+                ThemeService.instance.switchTheme(ThemeMode.dark);
+              }else{
+                ThemeService.instance.switchTheme(ThemeMode.light);
+              }
+            }),
+          ],
+        ),
+        Column(
+          children: [
+            const Text('选择主题色'),
+          ],
+        ),
         CustomButton(
             onTap: () {
               RouteUtil.pushToView(Routes.needLoginPage);
