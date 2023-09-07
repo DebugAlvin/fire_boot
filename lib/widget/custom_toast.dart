@@ -38,9 +38,9 @@ class CustomToast {
   /// 显示在中间。如不设置duration则会自动根据内容长度来计算（更友好，最长5秒）
   static void showInCenter(
       {required String text,
-      required BuildContext context,
-      Duration? duration,
-      ThemeData? themeData}) {
+        required BuildContext context,
+        Duration? duration,
+        ThemeData? themeData}) {
     show(
       text,
       context,
@@ -50,20 +50,24 @@ class CustomToast {
     );
   }
 
+  static void dismiss() {
+    preToastView?._dismiss();
+  }
+
   /// 显示Toast，如不设置duration则会自动根据内容长度来计算（更友好，最长5秒）
   static void show(
-    String text,
-    BuildContext context, {
-    Duration? duration,
-    Color? background,
-    TextStyle? textStyle,
-    double? radius,
-    Image? preIcon,
-    double? verticalOffset,
-    VoidCallback? onDismiss,
-    CustomToastGravity? gravity = CustomToastGravity.bottom,
-    ThemeData? themeData,
-  }) {
+      String text,
+      BuildContext context, {
+        Duration? duration,
+        Color? background,
+        TextStyle? textStyle,
+        double? radius,
+        Image? preIcon,
+        double? verticalOffset,
+        VoidCallback? onDismiss,
+        CustomToastGravity? gravity = CustomToastGravity.bottom,
+        ThemeData? themeData,
+      }) {
     final OverlayState? overlayState = Overlay.of(context);
     if (overlayState == null) return;
     final defaultTheme = themeData ?? ThemeService().theme;
@@ -96,7 +100,7 @@ class CustomToast {
       },
     );
     final _ToastView toastView =
-        _ToastView(overlayState: overlayState, overlayEntry: overlayEntry);
+    _ToastView(overlayState: overlayState, overlayEntry: overlayEntry);
     preToastView = toastView;
     toastView._show(
       duration: finalDuration,
@@ -243,7 +247,7 @@ class ToastChild extends StatelessWidget {
   TextStyle? _getTextStyle() {
     return textStyle ??
         themeData?.textTheme.bodySmall
-            ?.copyWith(color: themeData?.colorScheme.surface);
+            ?.copyWith(color: themeData?.colorScheme.background);
   }
 
   Color? _getBackground() {

@@ -62,7 +62,7 @@ class ApkInstallService {
     try {
       // currentDownloadStateCH.value = '正准备下载...';
       /// 发起下载请求
-      var response = await Dio().download(url, file,
+      var response = await Dio().download(url, file.path,
           onReceiveProgress: (num received, num total) {
         /// 获取下载进度
         if (_onDownload != null) _onDownload!(received, total);

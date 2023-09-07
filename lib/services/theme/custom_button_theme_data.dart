@@ -4,7 +4,8 @@ import 'package:fire_boot/services/theme/extention/button_theme_data_extension.d
 import 'package:flutter/material.dart';
 
 class CustomButtonThemeData {
-  static ButtonThemeData  defaultTheme(ColorScheme colorScheme) {
+  static ButtonThemeData defaultTheme(
+      {required ColorScheme colorScheme, required bool isDark}) {
     final defaultTheme = const ButtonThemeData().copyWith(
       height: AppValues.defaultButtonHeight,
       minWidth: AppValues.defaultButtonMiniWidth,
@@ -16,10 +17,15 @@ class CustomButtonThemeData {
     defaultTheme.horizontalPadding = AppValues.defaultButtonHorizontalPadding;
     defaultTheme.verticalPadding = AppValues.defaultButtonVerticalPadding;
     defaultTheme.borderWith = AppValues.defaultBorderWith;
-    defaultTheme.borderColor = AppThemes.buttonBorderColor;
-    defaultTheme.disableBorderColor = AppThemes.buttonBorderColor;
+    defaultTheme.borderColor =
+        isDark ? colorScheme.onBackground : colorScheme.onPrimary;
+    defaultTheme.disableBorderColor = isDark
+        ? colorScheme.onBackground.withOpacity(0.7)
+        : colorScheme.onPrimary.withOpacity(0.7);
     defaultTheme.mainTextColor = AppThemes.buttonMainTextColor;
-    defaultTheme.outLineDisableTextColor = AppThemes.buttonOutlineDisableTextColor;
+    defaultTheme.outLineDisableTextColor = isDark
+        ? colorScheme.onBackground.withOpacity(0.7)
+        : colorScheme.onPrimary.withOpacity(0.7);
     return defaultTheme;
   }
 }

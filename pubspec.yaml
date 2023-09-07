@@ -36,8 +36,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
-  # 状态管理 https://pub.flutter-io.cn/packages/provider
-  provider: ^6.0.5
   get: ^4.6.5
   flutter_screenutil: ^5.6.0
   flutter_svg: ^1.1.6
@@ -55,8 +53,6 @@ dependencies:
   pretty_dio_logger: ^1.1.1
   #cookis jar
   cookie_jar: ^3.0.1
-  #下拉刷新上拉加载
-  easy_refresh: ^3.3.1
   #ulog
   flutter_ulog: ^0.0.5
   # WebView
@@ -88,6 +84,12 @@ dependencies:
   # 国际化
   flutter_localizations:
     sdk: flutter
+  # 拍照与录像(微信UI) https://pub.flutter-io.cn/packages/wechat_camera_picker
+  wechat_assets_picker: ^8.4.3
+  wechat_camera_picker: ^3.7.0
+  #######################################################
+  # 获取安卓iOS设备信息 https://pub.flutter-io.cn/packages/device_info_plus
+  device_info_plus: ^8.1.0
 
 dev_dependencies:
   flutter_test:

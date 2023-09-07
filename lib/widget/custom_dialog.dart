@@ -6,77 +6,153 @@ import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/utils/route_util.dart';
 
+import 'button/custom_big_ghost_button.dart';
 import 'button/custom_button.dart';
+import 'button/cutom_big_main_button.dart';
+import 'custom_safe_dialog.dart';
 
 
-Future<bool?> showCustomDialog({
+Future<bool?> showCustomDialog<T>({
   String title = '提示', // 标题
   String content = '',
-  String confirmTitle = '确认',
-  String cancelTitle = '取消',
-  bool? showCancel = true,
+  String confirm = '确认',
+  String cancel = '关闭',
+  required BuildContext context,
+  bool barrierDismissible = true,
+  bool useRootNavigator = true,
+  bool showCancel = true,
+  ColorScheme? colorScheme,
 }) async {
   bool? result;
-  await Get.defaultDialog(
-      title: title,
-      titlePadding: const EdgeInsets.only(top: 37),
-      contentPadding: const EdgeInsets.only(left: 25, right: 25, top: 25),
-      backgroundColor: AppThemes.pageLightBackground,
-      titleStyle: ThemeService.instance.lightTheme.textTheme.titleSmall,
-      confirm: Padding(
-        padding: const EdgeInsets.only(top: AppValues.smallPadding,bottom: AppValues.defaultPadding),
-        child: Column(
-          children: [
-            _buildButton(
-                title: confirmTitle,
-                color: ThemeService().theme.colorScheme.primary,
-                textColor: AppThemes.textPrimaryColorWhite,
-                onPressed: () {
+  final defaultColorScheme = colorScheme ?? ThemeService().theme.colorScheme;
+  await CustomSafeDialog.show<T>(
+      context: context,
+      tag: 'CustomDialog',
+      barrierDismissible: barrierDismissible,
+      useRootNavigator: useRootNavigator,
+      builder: (_) {
+        return Container(
+          padding: const EdgeInsets.only(
+              left: AppValues.defaultPadding, right: AppValues.defaultPadding),
+          decoration: const BoxDecoration(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(child: Container()),
+              CustomDialog(
+                title: title,
+                content: content,
+                colorScheme: defaultColorScheme,
+                cancel: cancel,
+                confirm: confirm,
+                showCancel: showCancel,
+                onConfirm: () {
                   result = true;
-                  RouteUtil.popView();
-                }),
-            const SizedBox(
-              height: AppValues.defaultPadding,
-            ),
-            showCancel == true ? _buildButton(
-                title: cancelTitle,
-                textColor: AppThemes.textColorGrey,
-                onPressed: () {
+                },
+                onCancel: () {
                   result = false;
-                  RouteUtil.popView();
-                }, color: Colors.transparent) : Container(),
-          ],
-        ),
-      ),
-      content: Text(content,style: ThemeService.instance.lightTheme.textTheme.bodySmall,));
+                },
+              ),
+              Expanded(child: Container()),
+            ],
+          ),
+        );
+      });
   return result;
 }
 
-_buildButton(
-    {required String title,
-      required Color color,
-      required Color textColor,
-      required VoidCallback onPressed}) {
-  return CustomButton(
-    // height: 44,
-    onTap: (){
-      onPressed();
-    },
-    child: Container(
-      width: double.infinity,
-      height: double.infinity,
-      alignment: Alignment.center,
+class CustomDialog extends StatelessWidget {
+  final String title;
+  final String content;
+  final ColorScheme? colorScheme;
+  final String? cancel;
+  final String? confirm;
+  final bool showCancel;
+  final Function onConfirm;
+  final Function onCancel;
+
+  const CustomDialog(
+      {super.key,
+        required this.title,
+        required this.content,
+        this.colorScheme,
+        this.cancel,
+        this.confirm,
+        required this.showCancel,
+        required this.onConfirm,
+        required this.onCancel});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    final defaultColorScheme = colorScheme ?? ThemeService().theme.colorScheme;
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 350),
+      padding: const EdgeInsets.only(
+          left: AppValues.defaultPadding,
+          right: AppValues.defaultPadding,
+          top: 30,
+          bottom: 18),
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(44.0)),
-        color: color,
+        color: defaultColorScheme.background,
+        borderRadius: BorderRadius.circular(AppValues.smallRadius),
       ),
-      child: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: ThemeService().theme.textTheme.bodySmall?.copyWith(
-          color: textColor,
-        ),
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: ThemeService()
+                .theme
+                .textTheme
+                .bodyLarge
+                ?.copyWith(fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            content,
+            style: ThemeService()
+                .theme
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: colorScheme?.onSurface),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Row(
+            children: [
+              showCancel
+                  ? Expanded(
+                child: CustomBigGhostButton(
+                  title: cancel,
+                  onTap: () {
+                    onCancel();
+                    RouteUtil.popView();
+                  },
+                ),
+              )
+                  : const SizedBox.shrink(),
+              Visibility(
+                visible: showCancel,
+                child: const SizedBox(
+                  width: AppValues.defaultPadding,
+                ),
+              ),
+              Expanded(
+                child: CustomBigMainButton(
+                  onTap: () {
+                    onConfirm();
+                    RouteUtil.popView();
+                  },
+                  title: confirm,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
-    ),
-  );
+    );
+  }
 }

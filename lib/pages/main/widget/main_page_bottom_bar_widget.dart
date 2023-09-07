@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fire_boot/constant/app_values.dart';
+import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'main_page_bottom_bar_controller.dart';
@@ -8,29 +10,21 @@ import 'main_page_bottom_bar_controller.dart';
 ///首页底部导航
 class MainPageBottomBarWidget extends StatefulWidget {
   static final double contentHeight =
-      (ScreenUtil().bottomBarHeight > 0) ? 83 : 49;
+  (ScreenUtil().bottomBarHeight > 0) ? 83 : 49;
 
-  const MainPageBottomBarWidget(
-      {super.key,
-      required this.selectedItemColor,
-      required this.unselectedItemColor,
-      required this.selectedIconColor,
-      required this.unselectedIconColor,
-      required this.initSelectdIndex,
-      this.onMenuTap,
-      this.onCenterTap,
-      required this.color,
-      required this.controller});
+  const MainPageBottomBarWidget({
+    super.key,
+    required this.initSelectdIndex,
+    this.onMenuTap,
+    this.onCenterTap,
+    required this.controller,
+    this.themeData,
+  });
 
-  // final Function(MenuCode menuCode) onNewMenuSelected;
-  final Color selectedItemColor;
-  final Color unselectedItemColor;
-  final Color selectedIconColor;
-  final Color unselectedIconColor;
   final int initSelectdIndex;
   final ValueChanged<int>? onMenuTap;
   final Function? onCenterTap;
-  final Color color;
+  final BottomNavigationBarThemeData? themeData;
   final MainPageBottomBarController controller;
 
   @override
@@ -66,11 +60,14 @@ class _MainPageBottomBarWidgetState extends State<MainPageBottomBarWidget> {
   }
 
   _buildBottomBar() {
+    final defaultTheme =
+        widget.themeData ?? ThemeService().theme.bottomNavigationBarTheme;
     return Container(
       alignment: Alignment.topCenter,
       key: bottomBarKey,
-      color: widget.color,
+      color: defaultTheme.backgroundColor,
       height: MainPageBottomBarWidget.contentHeight,
+      padding: const EdgeInsets.symmetric(horizontal: AppValues.defaultPadding),
       child: Container(
         alignment: Alignment.topCenter,
         height: 49,
@@ -79,23 +76,43 @@ class _MainPageBottomBarWidgetState extends State<MainPageBottomBarWidget> {
             Expanded(
                 flex: 1,
                 child: _buildAnimatedText(
-                    '首页', "ic_home.svg", "ic_homepage_selected.svg", 0)),
-            Expanded(
-                flex: 1,
-                child: _buildAnimatedText('发现', "ic_forecastpage.svg",
-                    "ic_forecastpage_selected.svg", 1)),
-            Expanded(
-                flex: 1,
-                child: _buildAnimatedText(
-                    '比赛', "ic_matchpage.svg", "ic_matchpage_selected.svg", 2)),
+                    barName: '首页',
+                    iconName: "ic_home.svg",
+                    iconSelectedName: "ic_homepage_selected.svg",
+                    index: 0,
+                    themeData: defaultTheme)),
             Expanded(
                 flex: 1,
                 child: _buildAnimatedText(
-                    '数据', "ic_datapage.svg", "ic_datapage_selected.svg", 3)),
+                    barName: '发现',
+                    iconName: "ic_forecastpage.svg",
+                    iconSelectedName: "ic_forecastpage_selected.svg",
+                    index: 1,
+                    themeData: defaultTheme)),
             Expanded(
                 flex: 1,
-                child: _buildAnimatedText('我的', "ic_profilepage.svg",
-                    "ic_profilepage_selected.svg", 4)),
+                child: _buildAnimatedText(
+                    barName: '比赛',
+                    iconName: "ic_matchpage.svg",
+                    iconSelectedName: "ic_matchpage_selected.svg",
+                    index: 2,
+                    themeData: defaultTheme)),
+            Expanded(
+                flex: 1,
+                child: _buildAnimatedText(
+                    barName: '数据',
+                    iconName: "ic_datapage.svg",
+                    iconSelectedName: "ic_datapage_selected.svg",
+                    index: 3,
+                    themeData: defaultTheme)),
+            Expanded(
+                flex: 1,
+                child: _buildAnimatedText(
+                    barName: '我的',
+                    iconName: "ic_profilepage.svg",
+                    iconSelectedName: "ic_profilepage_selected.svg",
+                    index: 4,
+                    themeData: defaultTheme)),
           ],
         ),
       ),
@@ -103,7 +120,11 @@ class _MainPageBottomBarWidgetState extends State<MainPageBottomBarWidget> {
   }
 
   _buildAnimatedText(
-      String barName, String iconName, String iconSelectedName, int index) {
+      {required String barName,
+        required String iconName,
+        required String iconSelectedName,
+        required int index,
+        required BottomNavigationBarThemeData themeData}) {
     return TextButton(
         onPressed: () {
           setState(() {
@@ -117,21 +138,29 @@ class _MainPageBottomBarWidgetState extends State<MainPageBottomBarWidget> {
           overlayColor: MaterialStateProperty.all(Colors.transparent),
         ),
         child: Column(children: [
-          const SizedBox(height: 6),
+          (index != selectdIndex)
+              ? const SizedBox(
+            height: 4,
+          )
+              : Container(
+            alignment: Alignment.centerRight,
+            height: 4,
+            width: 42,
+            color: ThemeService().theme.colorScheme.secondary,
+          ),
+          const SizedBox(height: 4),
           SvgPicture.asset(
               "assets/svg/${(index == selectdIndex) ? iconSelectedName : iconName}",
-              width: 24,
-              height: 24,
+              width: 18,
+              height: 18,
               color: (index == selectdIndex)
-                  ? widget.selectedIconColor
-                  : widget.unselectedIconColor),
+                  ? themeData.selectedItemColor
+                  : themeData.unselectedItemColor),
           const SizedBox(height: 2),
           Text(
             barName,
             style: TextStyle(
-                color: (index == selectdIndex)
-                    ? widget.selectedItemColor
-                    : widget.unselectedItemColor,
+                color: ThemeService().theme.colorScheme.onBackground,
                 fontSize: 10,
                 fontWeight: FontWeight.normal),
           )

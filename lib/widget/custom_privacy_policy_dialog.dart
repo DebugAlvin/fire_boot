@@ -11,10 +11,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomPrivacyPolicyDialog extends StatefulWidget {
   const CustomPrivacyPolicyDialog(
       {super.key,
-      required this.onConfirm,
-      required this.onCancel,
-      required this.onRegister,
-      required this.onPrivater});
+        required this.onConfirm,
+        required this.onCancel,
+        required this.onRegister,
+        required this.onPrivater});
 
   //注册协议点击回调
   final VoidCallback onRegister;
@@ -55,7 +55,7 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
                 child: Text("个人信息保护指引",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppThemes.appBarTextColorDark, fontSize: 18.w)),
+                        color: ThemeService().theme.colorScheme.onBackground,fontSize: 18.w)),
               ),
               Container(
                   alignment: Alignment.center,

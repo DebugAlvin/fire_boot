@@ -39,12 +39,7 @@ class MainPage extends BaseView<MainLogic> {
       onMenuTap: (int code) {
         controller.onMenuSelected(MenuCode.values[code]);
       },
-      selectedItemColor: AppThemes.textPrimaryColorDark,
-      unselectedItemColor: AppThemes.lightGray,
-      selectedIconColor: ThemeService().theme.primaryColor,
-      unselectedIconColor: AppThemes.tabBarIconColorUnselected,
       initSelectdIndex: 0,
-      color: AppThemes.appBarIconColorWhite,
       controller: controller.bottomBarController,
     );
   }

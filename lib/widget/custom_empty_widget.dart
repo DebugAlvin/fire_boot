@@ -1,43 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
-import 'package:lottie/lottie.dart';
+
+/// 自定义Text builder
+typedef TextBuilder = Widget Function(BuildContext context);
 
 class CustomEmptyWidget extends StatelessWidget {
   const CustomEmptyWidget(
-      {Key? key, this.width, this.height, this.alignment = Alignment.center, this.color, this.text = "暂无数据", this.imgPath = "assets/images/data_empty.png"})
+      {Key? key,
+        this.width,
+        this.height,
+        this.alignment = Alignment.center,
+        this.backgroundColor,
+        this.text = "暂无数据",
+        this.imgPath = "assets/images/data_empty.png",
+        this.colorScheme,
+        this.textBuilder})
       : super(key: key);
   final double? width;
   final double? height;
   final AlignmentGeometry? alignment;
-  final Color? color;
+  final Color? backgroundColor;
   final String? text;
   final String? imgPath;
+  final ColorScheme? colorScheme;
+  final TextBuilder? textBuilder;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    final defaultColorScheme = ThemeService().theme.colorScheme;
     return Center(
       child: Container(
           width: width,
           height: height,
           alignment: alignment,
           decoration: BoxDecoration(
-            color: color,
+            color: backgroundColor,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              imgPath != null && imgPath != "" ? Container(margin: const EdgeInsets.only(bottom: 37), child: Image.asset(imgPath!, width: 178, height: 130)) : Lottie.asset(
-                'assets/lottie/refresh_empty_page.json',
-                repeat: true,
-                reverse: true,
-                animate: true,
-                width: 200,
-                height: 180,
+              Image.asset(
+                imgPath!,
+                fit: BoxFit.contain,
+                scale: 2,
               ),
-              Text(
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
+              textBuilder != null
+                  ? Builder(
+                builder: (context) {
+                  return textBuilder!(context);
+                },
+              )
+                  : Text(
                 text!,
-                style: ThemeService().theme.textTheme.labelLarge,
+                style: ThemeService()
+                    .theme
+                    .textTheme
+                    .labelLarge
+                    ?.copyWith(color: defaultColorScheme.onSurface),
               ),
             ],
           )),

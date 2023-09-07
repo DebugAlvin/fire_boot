@@ -162,7 +162,7 @@ abstract class BaseView<Controller extends BaseController>
       );
     } else {
       container = CustomEmptyWidget(
-        color: scaffoldBackgroundColor(),
+        backgroundColor: scaffoldBackgroundColor(),
       );
     }
     return container;

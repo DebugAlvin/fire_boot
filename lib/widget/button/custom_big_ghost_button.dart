@@ -7,45 +7,56 @@ class CustomBigGhostButton extends StatelessWidget {
   ///按钮文案，默认'确认'
   final String? title;
 
-  ///文案颜色
-  final Color? titleColor;
-
-  ///按钮背景颜色
-  final Color? backgroundColor;
-
   ///点击回调
   final VoidCallback? onTap;
 
   ///默认父布局可用空间
   final double? width;
 
-  ///默认主题配置
+  ///主题颜色
+  final Color? color;
+
+  ///默认按钮主题
   final ButtonThemeData? themeData;
+
+  ///调色板
+  final ColorScheme? colorScheme;
 
   const CustomBigGhostButton({
     Key? key,
     this.title,
-    this.titleColor,
-    this.backgroundColor,
     this.onTap,
     this.width,
     this.themeData,
+    this.color,
+    this.colorScheme,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ButtonThemeData defaultTheme =
         themeData ?? ThemeService().theme.buttonTheme;
-    return CustomButton(
+    final defaultColorScheme = colorScheme ?? ThemeService().theme.colorScheme;
+    return CustomButton.outline(
+      constraints:  BoxConstraints(
+        minWidth: double.infinity,
+        maxWidth: double.infinity,
+        minHeight: defaultTheme.height,
+      ),
+      borderWith: defaultTheme.borderWith,
       borderRadius: defaultTheme.borderRadius,
-      constraints: BoxConstraints.tightFor(
-          width: width ?? double.infinity, height: defaultTheme.height),
-      backgroundColor: backgroundColor ??
-          defaultTheme.colorScheme?.primary.withOpacity(0.1),
-      onTap: onTap,
-      alignment: Alignment.center,
       title: title,
-      textColor: titleColor ?? defaultTheme.colorScheme?.primary,
+      disableLineColor: defaultTheme.disableBorderColor,
+      lineColor: _getColor(defaultColorScheme),
+      textColor:_getColor(defaultColorScheme),
+      alignment: Alignment.center,
+      onTap: onTap,
+      disableTextColor: defaultTheme.outLineDisableTextColor,
     );
   }
+
+  Color _getColor(ColorScheme colorScheme) {
+    return color ?? colorScheme.primary;
+  }
+
 }

@@ -121,6 +121,6 @@ class CustomSmallOutlineButton extends StatelessWidget {
   }
 
   Color _getTextColor(ButtonThemeData theme) {
-    return textColor ?? theme.colorScheme?.onBackground ?? Colors.black;
+    return textColor ?? theme.borderColor;
   }
 }

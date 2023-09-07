@@ -23,7 +23,7 @@ class TestCustomStatePage extends BaseView<TestCustomStateLogic> {
         const CustomLoadingWidget(width: 200,height: 200,color: Colors.black,),
         CustomNetWorkErrorView(color: Colors.blue.withOpacity(0.2),),
         const SizedBox(height: 20,),
-        CustomEmptyWidget(color: Colors.red.withOpacity(0.2),),
+        const CustomEmptyWidget(),
       ],),
     );
   }
