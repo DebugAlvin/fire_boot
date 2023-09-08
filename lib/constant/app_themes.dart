@@ -39,7 +39,7 @@ class AppThemes {
   static const Color onPrimaryContainer = Color(0xFF05080A);
 
   ///另一种不常见的主题色比primary浅一些
-  ///比较少用的一些主题颜色例如赔率Text、气泡、角标等
+  ///比较少用的一些主题颜色例如次要Text、气泡、角标等
   static const Color secondaryColor = Color(0xFF4391e7);
   static const Color onSecondaryColor = Color(0xFF333333);
 
@@ -80,18 +80,14 @@ class AppThemes {
   ///widget color
   static Color dividerColor = const Color(0xFFF2F4F7).withOpacity(0.5);
   static const Color iconColor = Color(0xFFB1BAD3);
+  static const Color widgetColorWhite = Color(0xFFFFFFFF);
+  static const Color widgetColorDark = Color(0xFF000000);
 
   ///text color
   static const Color textColorWhite = Color(0xFFFFFFFF);
   static const Color textColorDark = Color(0xFF000000);
   static const Color textColorSecondary = Color(0xFFB1BAD3);
   static const Color textColorGrey = Color(0xFFA6A6A6);
-
-  ///  辅助，用于图标、文字颜色
-  static const Color textColorRed = Color(0xFFEC5F48);
-  static const Color textColorBlue = skyBlue;
-  static const Color textColorGreen = grassGreen;
-  static const Color textColorOrange = goldOrange;
 
   ///button
   ///使用主题色背景的按钮禁用时文字的相对颜色

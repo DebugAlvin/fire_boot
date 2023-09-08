@@ -43,10 +43,16 @@ extension ButtonThemeDataExtension on ButtonThemeData {
     _disableBorderColor[this] = value;
   }
 
-  static final _mainTextColor = Expando<Color>();
-  Color get mainTextColor => _mainTextColor[this] ?? Colors.white;
-  set mainTextColor(Color value) {
-    _mainTextColor[this] = value;
+  static final _whiteColor = Expando<Color>();
+  Color get whiteColor => _whiteColor[this] ?? Colors.white;
+  set whiteColor(Color value) {
+    _whiteColor[this] = value;
+  }
+
+  static final _darkColor = Expando<Color>();
+  Color get darkColor => _darkColor[this] ?? Colors.black;
+  set darkColor(Color value) {
+    _darkColor[this] = value;
   }
 
   static final _outLineDisableTextColor = Expando<Color>();

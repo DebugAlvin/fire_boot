@@ -23,7 +23,7 @@ class CustomColorScheme {
       /// onPrimaryContainer 适用于位于primaryContainer之上的内容（图标、文本等）
       onPrimaryContainer: AppThemes.onPrimaryContainer,
 
-      ///另一种不常见的主题色,比
+      ///另一种不常见的主题色,通常比primary浅一些
       secondary: AppThemes.secondaryColor,
       onSecondary: AppThemes.onSecondaryColor,
 
@@ -43,8 +43,11 @@ class CustomColorScheme {
       onSurface:  isDark ? AppThemes.onSurfaceColor : AppThemes.textColorDark,
 
       ///和surface相反的颜色
-      inverseSurface: isDark ? AppThemes.textColorWhite : AppThemes.textColorDark,
-      onInverseSurface: isDark ? AppThemes.textColorDark : AppThemes.textColorWhite,
+      inverseSurface:
+      isDark ? AppThemes.widgetColorWhite : AppThemes.widgetColorDark,
+      onInverseSurface:
+      isDark ? AppThemes.widgetColorDark : AppThemes.widgetColorWhite,
+
 
       /// surfaceVariant另一种和surface产生区别的背景色,例如ListView Card背景色
       surfaceVariant: AppThemes.surfaceVariant,

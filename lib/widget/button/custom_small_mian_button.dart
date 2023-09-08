@@ -77,7 +77,7 @@ class CustomSmallMainButton extends StatelessWidget {
       builder: (_, con) {
         TextStyle style = textStyle ??
             defaultTextTheme!.bodyMedium!
-                .copyWith(color: textColor ?? defaultThemeData.mainTextColor);
+                .copyWith(color: textColor ?? defaultThemeData.whiteColor);
         if (fontSize != null) {
           style = style.copyWith(fontSize: fontSize!);
         }
@@ -113,7 +113,7 @@ class CustomSmallMainButton extends StatelessWidget {
           ),
           alignment: Alignment.center,
           title: title,
-          textColor: defaultThemeData.mainTextColor,
+          textColor: defaultThemeData.whiteColor,
           backgroundColor: _getBackgroundColor(defaultThemeData),
           disableBackgroundColor:
               _getBackgroundColor(defaultThemeData).withOpacity(0.7),

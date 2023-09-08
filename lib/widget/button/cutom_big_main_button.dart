@@ -79,7 +79,7 @@ class CustomBigMainButton extends StatelessWidget {
       backgroundColor: _getBackgroundColor(defaultTheme),
       disableBackgroundColor: _getBackgroundColor(defaultTheme).withOpacity(0.7),
       onTap: onTap,
-      textColor: defaultTheme.mainTextColor,
+      textColor: defaultTheme.whiteColor,
       disableTextColor: defaultTheme.disableTextColor,
     );
   }
