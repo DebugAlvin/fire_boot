@@ -11,6 +11,10 @@ class WidgetUtil {
     return Get.context;
   }
 
+  static double getTopPaddingHeight(BuildContext context) {
+    return MediaQuery.of(context).padding.top;
+  }
+
   static double getAppBarHeight(BuildContext context) {
     return AppBar().preferredSize.height + MediaQuery.of(context).padding.top;
   }
