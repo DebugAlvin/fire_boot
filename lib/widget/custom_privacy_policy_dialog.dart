@@ -2,19 +2,17 @@ import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/widget/button/custom_button.dart';
 import 'package:fire_boot/widget/button/cutom_big_main_button.dart';
-// import 'package:fire_boot/widget/custom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fire_boot/constant/app_themes.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomPrivacyPolicyDialog extends StatefulWidget {
   const CustomPrivacyPolicyDialog(
       {super.key,
-        required this.onConfirm,
-        required this.onCancel,
-        required this.onRegister,
-        required this.onPrivater});
+      required this.onConfirm,
+      required this.onCancel,
+      required this.onRegister,
+      required this.onPrivater,
+      this.themeData});
 
   //注册协议点击回调
   final VoidCallback onRegister;
@@ -28,6 +26,8 @@ class CustomPrivacyPolicyDialog extends StatefulWidget {
   //拒绝按钮的回调
   final VoidCallback onCancel;
 
+  final ThemeData? themeData;
+
   @override
   State<StatefulWidget> createState() => _CustomPrivacyPolicyDialogState();
 }
@@ -36,46 +36,47 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    ScreenUtil.init(context, designSize: const Size(375, 812));
+    final defaultTheme = widget.themeData ?? ThemeService().theme;
     return Material(
       type: MaterialType.transparency,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
-            color: AppThemes.milkWhite,
-            borderRadius: BorderRadius.all(Radius.circular(24.w)),
+            color: defaultTheme.colorScheme.surface,
+            borderRadius: const BorderRadius.all(Radius.circular(24)),
           ),
-          width: 280.w,
+          width: 280,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(top: 24.w, bottom: 24.w),
+                padding: const EdgeInsets.only(top: 24, bottom: 24),
                 child: Text("个人信息保护指引",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: ThemeService().theme.colorScheme.onBackground,fontSize: 18.w)),
+                    style: defaultTheme.textTheme.titleLarge?.copyWith(
+                        color: defaultTheme.colorScheme.inverseSurface)),
               ),
               Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 24.w, right: 24.w),
+                  padding: const EdgeInsets.only(left: 24, right: 24),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Row(
                       children: [
                         Text(
                           "欢迎使用普泽基金应用！我们将通过",
-                          style: TextStyle(
-                              color: AppThemes.textColorSecondary,
-                              fontSize: 14.w),
+                          style: defaultTheme
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: AppThemes.textColorGrey),
                         ),
                       ],
                     ),
                   )),
               Container(
                   alignment: Alignment.topLeft,
-                  padding: EdgeInsets.only(left: 24.w, right: 24.w),
+                  padding: const EdgeInsets.only(left: 24, right: 24),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Row(
@@ -87,16 +88,20 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
                           },
                           child: Text(
                             "《注册服务协议》",
-                            style: TextStyle(
-                                fontSize: 14.w, color: ThemeService().theme.colorScheme.primary),
+                            style:defaultTheme
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    color: defaultTheme
+                                        .colorScheme
+                                        .primary),
                           ),
                         ),
-                        Text(
-                          "、",
-                          style: TextStyle(
-                              color: AppThemes.textColorSecondary,
-                              fontSize: 14.w),
-                        ),
+                        Text("、",
+                            style: defaultTheme
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(color: AppThemes.textColorGrey)),
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: () {
@@ -104,8 +109,13 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
                           },
                           child: Text(
                             "《隐私政策》",
-                            style: TextStyle(
-                                fontSize: 14.w, color: ThemeService().theme.colorScheme.primary),
+                            style: defaultTheme
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    color: defaultTheme
+                                        .colorScheme
+                                        .primary),
                           ),
                         ),
                       ],
@@ -113,17 +123,23 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
                   )),
               Container(
                 alignment: Alignment.topLeft,
-                padding: EdgeInsets.only(top: 1.w, left: 24.w, right: 24.w),
+                padding: const EdgeInsets.only(top: 1, left: 24, right: 24),
                 child: Text(
                     "帮助您了解我们收集、使用、存储和共享个人信息的情况，了解您的相关权利。\n\n为了保证您更好的体验，可能需要获取通知权限、电话权限、相机权限、存储权限、设备信息。当开启权限后方可使用相关功能。\n\n请仔细阅读，如您同意，请点击下方同意按钮以接受我们的服务。",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: AppThemes.textColorSecondary, fontSize: 14.w)),
+                    style: defaultTheme
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: AppThemes.textColorGrey)),
               ),
-              const SizedBox(height: AppValues.defaultPadding,),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
               _buildAgreeButton(),
-              _buildCancelButton(),
-              const SizedBox(height: AppValues.defaultPadding,),
+              _buildCancelButton(defaultTheme),
+              const SizedBox(
+                height: AppValues.defaultPadding,
+              ),
             ],
           ),
         ),
@@ -131,29 +147,20 @@ class _CustomPrivacyPolicyDialogState extends State<CustomPrivacyPolicyDialog> {
     );
   }
 
-  Widget _buildCancelButton() {
+  Widget _buildCancelButton(ThemeData themeData) {
     return CustomButton(
       title: '拒绝',
-      textColor: AppThemes.textColorSecondary,
+      textColor: AppThemes.textColorGrey,
       alignment: Alignment.center,
-      constraints: BoxConstraints(minHeight: ThemeService().theme.buttonTheme.height),
+      constraints:
+          BoxConstraints(minHeight: themeData.buttonTheme.height),
       onTap: () => widget.onCancel(),
     );
-
-
-    // return CustomBigMainButton(
-    //   title: '拒绝',
-    //   backgroundColor: Colors.transparent,
-    //   themeData: ThemeService().theme.buttonTheme.copyWith(
-    //     textTheme:
-    //   ),
-    //   onTap: () => widget.onCancel(),
-    // );
   }
 
   Widget _buildAgreeButton() {
     return Padding(
-      padding: const EdgeInsets.only(left: 25,right: 25),
+      padding: const EdgeInsets.only(left: 25, right: 25),
       child: CustomBigMainButton(
         onTap: () => widget.onConfirm(),
         title: '同意',

@@ -1,7 +1,6 @@
 import 'package:fire_boot/base/getx/base_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constant/app_values.dart';
 import 'logic.dart';
 
@@ -13,7 +12,6 @@ class SplashPage extends BaseView<SplashLogic> {
 
   @override
   Widget buildBody(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(375, 812));
     //等待隐私协议弹窗确认
     controller.onFinish = (){
       if(onFinish != null) {

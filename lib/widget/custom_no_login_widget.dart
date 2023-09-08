@@ -2,7 +2,6 @@ import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:fire_boot/widget/button/custom_small_mian_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomNoLoginWidget extends StatelessWidget {
   final double? width;
@@ -72,7 +71,7 @@ class CustomNoLoginWidget extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   child: CustomSmallMainButton(
-                    width: 300.w,
+                    width: 300,
                     title: '登陆',
                     onTap: () {
                       if (onPressed != null) {

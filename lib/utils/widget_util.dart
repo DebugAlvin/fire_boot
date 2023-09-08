@@ -15,6 +15,10 @@ class WidgetUtil {
     return AppBar().preferredSize.height + MediaQuery.of(context).padding.top;
   }
 
+  static double getBottomPaddingHeight(BuildContext context) {
+    return MediaQuery.of(context).padding.bottom;
+  }
+
   static bool isMultiClick({int intervalMilliseconds = 500}) {
     if (_lastClickTime == null ||
         DateTime.now().difference(_lastClickTime!) >

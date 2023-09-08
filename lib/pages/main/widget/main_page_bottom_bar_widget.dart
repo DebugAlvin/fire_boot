@@ -1,16 +1,14 @@
 import 'dart:ui';
+import 'package:fire_boot/utils/widget_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'main_page_bottom_bar_controller.dart';
 
 ///首页底部导航
 class MainPageBottomBarWidget extends StatefulWidget {
-  static final double contentHeight =
-  (ScreenUtil().bottomBarHeight > 0) ? 83 : 49;
 
   const MainPageBottomBarWidget({
     super.key,
@@ -55,18 +53,20 @@ class _MainPageBottomBarWidgetState extends State<MainPageBottomBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(375, 812));
-    return _buildBottomBar();
+    return _buildBottomBar(context);
   }
 
-  _buildBottomBar() {
+  _buildBottomBar(BuildContext context) {
     final defaultTheme =
         widget.themeData ?? ThemeService().theme.bottomNavigationBarTheme;
+    final bottomPaddingHeight = WidgetUtil.getBottomPaddingHeight(context);
+    //? 83 : 49
+    final bottomBarHeight = bottomPaddingHeight > 0 ? 83.0 : 49.0;
     return Container(
       alignment: Alignment.topCenter,
       key: bottomBarKey,
       color: defaultTheme.backgroundColor,
-      height: MainPageBottomBarWidget.contentHeight,
+      height: bottomBarHeight,
       padding: const EdgeInsets.symmetric(horizontal: AppValues.defaultPadding),
       child: Container(
         alignment: Alignment.topCenter,

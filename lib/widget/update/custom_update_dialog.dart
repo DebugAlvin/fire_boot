@@ -1,3 +1,4 @@
+import 'package:fire_boot/constant/app_themes.dart';
 import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/event/event_service.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
@@ -6,7 +7,6 @@ import 'package:fire_boot/widget/button/custom_button.dart';
 import 'package:fire_boot/widget/button/cutom_big_main_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'custom_update_controller.dart';
 
 const kAppUpdateProgressEvent = 'kAppUpdateProgressEvent';
@@ -60,21 +60,22 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
         color: Colors.transparent,
         child: Center(
           child: Container(
-            margin: EdgeInsets.all(20.w),
+            margin: const EdgeInsets.all(20),
             width: double.infinity,
-            height: 524.w,
+            height: 524,
             child: Stack(
               children: [
                 Positioned(
-                  top: 126.w,
+                  top: 126,
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: 400.w,
-                    padding: EdgeInsets.only(top: 95.w),
+                    height: 400,
+                    padding: const EdgeInsets.only(top: 95),
                     decoration: BoxDecoration(
                         color: lightTheme.colorScheme.surface,
-                        borderRadius: BorderRadius.all(Radius.circular(8.w))),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8))),
                     child: Column(
                       children: [
                         _buildTitleView(defaultTheme),
@@ -87,16 +88,16 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
                   ),
                 ),
                 Image.asset('assets/images/home_bulletin_ic.png',
-                    width: double.infinity, height: 220.w, fit: BoxFit.fill),
+                    width: double.infinity, height: 220, fit: BoxFit.fill),
               ],
             ),
           ),
         ),
       ),
       onWillPop: () async {
-        if(widget.canForceUpdate) {
+        if (widget.canForceUpdate) {
           return await Future.value(true);
-        }else{
+        } else {
           return await Future.value(false);
         }
       },
@@ -106,25 +107,22 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
   _buildTitleView(ThemeData themeData) {
     return Text(
       widget.title,
-      style: TextStyle(
-        fontWeight: FontWeight.w500,
-        color: themeData.colorScheme.primary,
-        fontSize: 24.sp,
-      ),
+      style: themeData.textTheme.headlineSmall
+          ?.copyWith(color: themeData.colorScheme.primary),
     );
   }
 
   _buildContentView(ThemeData themeData) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.w),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Scrollbar(
         child: SingleChildScrollView(
           child: Text(
             widget.remark,
             style: TextStyle(
               color: themeData.colorScheme.secondary,
-              fontSize: 14.sp,
+              fontSize: 14,
             ),
           ),
         ),
@@ -135,7 +133,7 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
   _buildConfirmView(ThemeData themeData) {
     return Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 30.w),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: [
             Visibility(
@@ -150,17 +148,18 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
                   !widget.controller.startDownLoad && widget.canForceUpdate,
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: AppValues.smallPadding,),
+                  top: AppValues.smallPadding,
+                ),
                 child: CustomButton(
                   title: '跳过更新',
-                  onTap: (){
-                    if(widget.onCancel != null) {
+                  textColor: AppThemes.textColorGrey,
+                  onTap: () {
+                    if (widget.onCancel != null) {
                       widget.onCancel!();
-                    }else{
+                    } else {
                       RouteUtil.popView();
                     }
                   },
-                  textColor: themeData.colorScheme.secondary,
                   constraints: const BoxConstraints(minHeight: 44),
                 ),
               ),
@@ -170,11 +169,11 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
               child: Column(
                 children: [
                   Container(
-                    height: 12.w,
+                    height: 12,
                     width: double.infinity,
-                    margin: EdgeInsets.only(top: 20.w, bottom: 10.w),
+                    margin: const EdgeInsets.only(top: 20, bottom: 10),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30.w),
+                      borderRadius: BorderRadius.circular(30),
                       child: LinearProgressIndicator(
                         backgroundColor: Colors.black26,
                         valueColor: AlwaysStoppedAnimation(
@@ -186,19 +185,19 @@ class _CustomUpdateDialogState extends State<CustomUpdateDialog>
                   Container(
                     width: double.infinity,
                     alignment: Alignment.center,
-                    margin: EdgeInsets.only(bottom: 30.w),
+                    margin: const EdgeInsets.only(bottom: 30),
                     child: Text(
                       widget.controller.stateText,
-                      style: TextStyle(
-                        color: themeData.colorScheme.secondary,
-                        fontSize: 16.sp,
-                      ),
+                      style: themeData.textTheme.bodyMedium
+                          ?.copyWith(color: AppThemes.secondaryColor),
                     ),
                   )
                 ],
               ),
             ),
-            const SizedBox(height: AppValues.extraLargePadding,),
+            const SizedBox(
+              height: AppValues.extraLargePadding,
+            ),
           ],
         ));
   }

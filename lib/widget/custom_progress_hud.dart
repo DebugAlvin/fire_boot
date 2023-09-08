@@ -1,7 +1,6 @@
 import 'package:fire_boot/constant/app_values.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:flutter/material.dart';
-
 import 'custom_safe_dialog.dart';
 
 class CustomPageLoading extends StatelessWidget {
@@ -11,7 +10,7 @@ class CustomPageLoading extends StatelessWidget {
   final double iconSize;
   final EdgeInsetsGeometry? textPadding;
 
-  CustomPageLoading({
+  const CustomPageLoading({
     Key? key,
     this.content,
     this.constraints = const BoxConstraints(
@@ -35,7 +34,7 @@ class CustomPageLoading extends StatelessWidget {
       child: Container(
         constraints: constraints,
         decoration: BoxDecoration(
-            color: themeData.colorScheme.onSurface,
+            color: themeData.colorScheme.inverseSurface,
             borderRadius: BorderRadius.circular(5)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +45,7 @@ class CustomPageLoading extends StatelessWidget {
               child: CircularProgressIndicator(
                 strokeWidth: 2.0,
                 valueColor:
-                    AlwaysStoppedAnimation(themeData.colorScheme.surface),
+                    AlwaysStoppedAnimation(themeData.colorScheme.onInverseSurface),
               ),
             ),
             Visibility(
@@ -58,7 +57,7 @@ class CustomPageLoading extends StatelessWidget {
                   maxLines: 1,
                   style: themeData.textTheme.titleSmall?.copyWith(
                       overflow: TextOverflow.ellipsis,
-                      color: themeData.colorScheme.surface,
+                      color: themeData.colorScheme.onInverseSurface,
                       decoration: TextDecoration.none),
                   overflow: TextOverflow.ellipsis,
                 ),

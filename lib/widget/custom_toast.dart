@@ -68,8 +68,7 @@ class CustomToast {
         CustomToastGravity? gravity = CustomToastGravity.bottom,
         ThemeData? themeData,
       }) {
-    final OverlayState? overlayState = Overlay.of(context);
-    if (overlayState == null) return;
+    final OverlayState overlayState = Overlay.of(context);
     final defaultTheme = themeData ?? ThemeService().theme;
     preToastView?._dismiss();
     preToastView = null;
@@ -247,11 +246,11 @@ class ToastChild extends StatelessWidget {
   TextStyle? _getTextStyle() {
     return textStyle ??
         themeData?.textTheme.bodySmall
-            ?.copyWith(color: themeData?.colorScheme.background);
+            ?.copyWith(color: themeData?.colorScheme.onInverseSurface);
   }
 
   Color? _getBackground() {
-    return background ?? themeData?.colorScheme.onBackground;
+    return background ?? themeData?.colorScheme.inverseSurface;
   }
 }
 
