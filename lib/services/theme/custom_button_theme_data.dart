@@ -22,7 +22,7 @@ class CustomButtonThemeData {
         ? colorScheme.onBackground.withOpacity(0.7)
         : colorScheme.onPrimary.withOpacity(0.7);
     defaultTheme.whiteColor = AppThemes.widgetColorWhite;
-    defaultTheme.whiteColor = AppThemes.widgetColorDark;
+    defaultTheme.darkColor = AppThemes.widgetColorDark;
     defaultTheme.outLineDisableTextColor = isDark
         ? colorScheme.onBackground.withOpacity(0.7)
         : colorScheme.onPrimary.withOpacity(0.7);
