@@ -7,12 +7,13 @@ import '../../utils/widget_util.dart';
 import '../../widget/custom_privacy_policy_dialog.dart';
 
 class PrivacyPolicyService {
-  static const SP_PRIVACY_POLICY_CHECK = 'SP_PRIVACY_POLICY_CHECK';
+
+  static const kPrivatePolicyCheck = 'kPrivatePolicyCheck';
 
   ///检查隐私协议的状态
   static Future<bool> checkStatus() async {
     //调用本地：
-    bool? isAgree = SPUtil().getBool(SP_PRIVACY_POLICY_CHECK);
+    bool? isAgree = SPUtil().getBool(kPrivatePolicyCheck);
     //第一次，弹窗是否同意
     if (isAgree == null  || !isAgree) {
       return await PrivacyPolicyService.showPrivacyDialog(WidgetUtil.getCurrentContext()!);
@@ -33,12 +34,12 @@ class PrivacyPolicyService {
       builder: (BuildContext ctx) {
         return CustomPrivacyPolicyDialog(
           onConfirm: () async {
-            SPUtil().setBool(SP_PRIVACY_POLICY_CHECK, true);
+            SPUtil().setBool(kPrivatePolicyCheck, true);
             RouteUtil.popView();
             isAgree = true;
           },
           onCancel: () async {
-            SPUtil().setBool(SP_PRIVACY_POLICY_CHECK, false);
+            SPUtil().setBool(kPrivatePolicyCheck, false);
             RouteUtil.popView();
             isAgree = false;
           }, onRegister: () {
