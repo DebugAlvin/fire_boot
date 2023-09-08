@@ -25,8 +25,14 @@ import 'package:fire_boot/pages/test/life_cycle/binding.dart';
 import 'package:fire_boot/pages/test/life_cycle/view.dart';
 import 'package:fire_boot/pages/test/need_login/binding.dart';
 import 'package:fire_boot/pages/test/need_login/view.dart';
+import 'package:fire_boot/pages/test/other_widget/binding.dart';
+import 'package:fire_boot/pages/test/other_widget/view.dart';
+import 'package:fire_boot/pages/test/refresh/binding.dart';
+import 'package:fire_boot/pages/test/refresh/view.dart';
 import 'package:fire_boot/pages/test/state/binding.dart';
 import 'package:fire_boot/pages/test/state/view.dart';
+import 'package:fire_boot/pages/test/text/binding.dart';
+import 'package:fire_boot/pages/test/text/view.dart';
 import 'package:fire_boot/pages/topic/binding.dart';
 import 'package:fire_boot/pages/topic/view.dart';
 import 'package:fire_boot/pages/web_browser/binding.dart';
@@ -93,6 +99,15 @@ abstract class Routes {
 
   ///测试拦截器
   static const String needLoginPage = '/need/login';
+
+  ///测试文字
+  static const String testTextPage = '/test/text';
+
+  ///测试刷新组件
+  static const testRefreshPage = '/test/refresh/';
+
+  ///测试其它widget
+  static const testOtherPage = '/test/other/widget';
 
   ///页面合集
   static final routePage = [
@@ -169,6 +184,21 @@ abstract class Routes {
       page: () => NeedLoginPage(),
       binding: NeedLoginBinding(),
       middlewares: [AuthMiddleware()],
+    ),
+    GetPage(
+      name: testOtherPage,
+      page: () => TestOtherPage(),
+      binding: TestOtherBinding(),
+    ),
+    GetPage(
+      name: testRefreshPage,
+      page: () => TestRefreshPage(),
+      binding: TestRefreshBinding(),
+    ),
+    GetPage(
+      name: testTextPage,
+      page: () => TestTextPage(),
+      binding: TestTextBinding(),
     ),
   ];
 }

@@ -91,7 +91,22 @@ class HomePage extends BaseView<HomeLogic> {
               RouteUtil.pushToView(Routes.needLoginPage);
             },
             child: const Text('测试拦截器')),
-        Text('国际化文本：${S.of(context).hello_text}')
+        Text('国际化文本：${S.of(context).hello_text}'),
+        CustomButton(
+            onTap: () {
+              RouteUtil.pushToView(Routes.testTextPage);
+            },
+            child: const Text('测试Text配置')),
+        CustomButton(
+            onTap: () {
+              RouteUtil.pushToView(Routes.testRefreshPage);
+            },
+            child: const Text('测试其它上拉下拉刷新')),
+        CustomButton(
+            onTap: () {
+              RouteUtil.pushToView(Routes.testOtherPage);
+            },
+            child: const Text('测试其它Widget')),
       ],
     );
   }

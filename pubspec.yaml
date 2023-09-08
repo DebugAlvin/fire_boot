@@ -155,6 +155,8 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/lottie/
+    - assets/images/custom_widget/
+    - assets/images/pe/
   #    - assets/lottie/gift/
   #    - assets/lottie/gift/images/
   #    - assets/custom_face_resource/4349/
