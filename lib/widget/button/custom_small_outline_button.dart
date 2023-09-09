@@ -1,6 +1,5 @@
 import 'dart:math';
-
-import 'package:fire_boot/services/theme/extention/button_theme_data_extension.dart';
+import 'package:fire_boot/services/theme/extension/button_theme_data_extension.dart';
 import 'package:fire_boot/services/theme/theme_service.dart';
 import 'package:flutter/material.dart';
 

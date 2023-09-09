@@ -48,7 +48,6 @@ class CustomColorScheme {
       onInverseSurface:
       isDark ? AppThemes.widgetColorDark : AppThemes.widgetColorWhite,
 
-
       /// surfaceVariant另一种和surface产生区别的背景色,例如ListView Card背景色
       surfaceVariant: AppThemes.surfaceVariant,
       onSurfaceVariant: AppThemes.onSurfaceVariant,
