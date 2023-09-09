@@ -88,6 +88,8 @@ class AppThemes {
   static const Color textColorDark = Color(0xFF000000);
   static const Color textColorSecondary = Color(0xFFB1BAD3);
   static const Color textColorGrey = Color(0xFFA6A6A6);
+  static const Color textColorLightGrey = Color(0xFFCCCCCC);
+
 
   ///button
   ///使用主题色背景的按钮禁用时文字的相对颜色

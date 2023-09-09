@@ -1,3 +1,4 @@
+import 'package:fire_boot/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fire_boot/base/getx/base_view.dart';
 import 'package:fire_boot/constant/app_values.dart';
@@ -97,6 +98,11 @@ class TestTextPage extends BaseView<TestTextLogic> {
             ),
             const SizedBox(
               height: AppValues.defaultPadding,
+            ),
+            CustomText(
+              'CustomText 设置颜色',
+              textColorStyle: CustomTextColorStyle.normal,
+              style: ThemeService().theme.textTheme.headlineSmall,
             ),
           ],
         ),
