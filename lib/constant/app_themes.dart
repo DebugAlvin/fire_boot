@@ -61,7 +61,7 @@ class AppThemes {
   ///和surfaceColor有明显区别的控件颜色
   static const Color onSurfaceColor = Color(0xFFB1BAD3);
 
-  /// surfaceVariant另一种和surface产生区别的背景色，常用于ListView Card
+  ///surfaceVariant另一种和surface产生区别的背景色，常用于ListView Card
   static const Color surfaceVariant = Color(0xFF213743);
 
   /// surfaceVariant里面常用的文字颜色
@@ -90,13 +90,6 @@ class AppThemes {
   static const Color textColorGrey = Color(0xFFA6A6A6);
   static const Color textColorLightGrey = Color(0xFFCCCCCC);
 
-
-  ///button
-  ///使用主题色背景的按钮禁用时文字的相对颜色
-  static Color buttonDisableTextColor = Colors.white.withOpacity(0.7);
-
-  ///使用主题色背景的按钮文字的相对颜色
-  static const buttonMainTextColor = AppThemes.textColorWhite;
 
   ///other
   static const Color countDownIconColor = Color(0xFF105EB5);

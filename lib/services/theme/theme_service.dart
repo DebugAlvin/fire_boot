@@ -110,6 +110,10 @@ class ThemeService {
       return lightTheme;
     }
   }
+  ///获取当前的调色板
+  ColorScheme get colorScheme {
+    return theme.colorScheme;
+  }
 
   /// 获取用户暗黑模式设置的缓存配置
   int? _loadThemeFromBox() => _box.get(_key);

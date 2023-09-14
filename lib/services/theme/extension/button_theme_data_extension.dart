@@ -8,11 +8,6 @@ extension ButtonThemeDataExtension on ButtonThemeData {
     _borderRadius[this] = value;
   }
 
-  static final _disableTextColor = Expando<Color>();
-  Color get disableTextColor => _disableTextColor[this] ?? Colors.grey;
-  set disableTextColor(Color value) {
-    _disableTextColor[this] = value;
-  }
   static final _horizontalPadding = Expando<double>();
   double get horizontalPadding => _horizontalPadding[this] ?? 0;
   set horizontalPadding(double value) {
