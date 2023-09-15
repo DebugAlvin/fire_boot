@@ -300,23 +300,23 @@ CustomText(
 
 <pre><code>
 ///使用Text时使用CustomTextColorStyle.xxx.value设置颜色
-RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                text: 'RichText不一样的',
-                style: ThemeService()
-                    .theme
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: CustomTextColorStyle.primary.value),
-              ),
-                  TextSpan(
-                    text: '字体颜色',
-                    style: ThemeService()
-                        .theme
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: CustomTextColorStyle.grey.value),
-                  ),
-            ]));
+    RichText(
+        text: TextSpan(children: [
+      TextSpan(
+        text: 'RichText不一样的',
+        style: ThemeService()
+            .theme
+            .textTheme
+            .titleMedium
+            ?.copyWith(color: CustomTextColorStyle.primary.value),
+      ),
+      TextSpan(
+        text: '字体颜色',
+        style: ThemeService()
+            .theme
+            .textTheme
+            .bodyMedium
+            ?.copyWith(color: CustomTextColorStyle.grey.value),
+      ),
+    ]));
 </code></pre>
