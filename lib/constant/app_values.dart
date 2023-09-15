@@ -104,7 +104,7 @@ abstract class AppValues {
   static const double stackedImageDefaultSize = 30;
 
   ///**********: Icon Sizes : **********
-  static const double iconDefaultSize = 36;
+  static const double iconDefaultSize = 18;
   static const double emoticonDefaultSize = 22;
   static const double iconSize_20 = 20;
   static const double iconSize_22 = 22;

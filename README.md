@@ -1,16 +1,23 @@
 # Fire_Boot开发指南
 
 ## 命名规范
+
 ## 1.文件名
+
 由小写英文加下划线组成；如 custom_app_bar.dart ， icon_user_image_default.jpg
+
 ## 2.类名
+
 大驼峰法,如 CustomAppBar
+
 ## 3.函数名，变量名、参数名
+
 小驼峰法；如 函数名: updateRenderObject() ; 变量名，参数名： userName ;
 
 另外类的成员变量： 不使用 m前缀(如mUserName)，而是 userName
 
 ## 文件夹名(包名)
+
 由小写英文或下划线组成；如文件夹名 home_page
 
 ## Widget开发规范
@@ -23,6 +30,7 @@
 5. 控件间距使用SizeBox占位
 6. 善用装饰器模式
 7. 使用方法签名遵循高内聚(迪米特原则)的代码规范，具体可以看Listview itemBuilder源码、
+
 <pre><code>
 ListView.builder(
   itemBuilder:(BuildContext context, int index){
@@ -31,7 +39,9 @@ ListView.builder(
   ......
 );
 </code></pre>
+
 8. Stack组件优先使用Positioned.fill作为孩子组件
+
 <pre><code>
     Stack(
       children: [
@@ -54,7 +64,9 @@ ListView.builder(
       ),
     );
 </code></pre>
+
 9. Container嵌套Text，需要Text居中显示，需要设置height为1.2
+
 <pre><code>
     Container(
       height: 100,
@@ -64,19 +76,24 @@ ListView.builder(
       child: const Text('居中显示',style: TextStyle(color: Colors.white,fontSize: 15,height: 1.2),),
     );
 </code></pre>
+
 10. 图片使用AspectRatio嵌套
 11. UI布局少用if else，尽量使用Stack嵌套Visibility
 
 相关资料：
+
 - [嵌套地狱官方解决方案](https://blog.csdn.net/m0_59449563/article/details/126531927)
 - [喜马拉雅PC案例改善套娃地狱问题](https://blog.51cto.com/u_13689323/4940447)
 - [为什么 Flutter钟爱 装饰器模式和组合模式](https://www.jianshu.com/p/5b630ae4d832)
+
 ## GetX开发规范
+
 1. 尽可能使用obx(被动动状态管理)而不使用GetBuilder(主动状态管理)
 2. 使用view（视图）、logic（控制器）、binding（依赖）的项目结构
 3. 使用GetX代码生成工具生成模块选择easy模式，勾选addBinding、addLifecycle，
    另外，GetBuilder、Container等常用组建均可使用插件生成[插件使用指南](https://juejin.cn/post/7005003323753365517#heading-9)
 4. 业务逻辑尽可能写到controller里面，page和view只是布局
+
 <pre><code>
 class TestHUDPage extends BaseView<TestHUDLogic> {
   TestHUDPage({Key? key}) : super(key: key);
@@ -128,7 +145,9 @@ class TestHUDLogic extends BaseController {
   }
 }
 </code></pre>
+
 ## 代码规范
+
 + if else使用大括号，尽可能不省略；
 
 + 不使用new来实例对象(dart 旧版本语法)；
@@ -139,7 +158,8 @@ class TestHUDLogic extends BaseController {
 
 + 常用的颜色值和宽高值，使用统一相同含义值来赋值；
 
-+ 实时处理报错（error）和警告（warning）：Dart Analysis统计了所有报错和警告的具体信息；（好处：一则让代码程序更健壮，二则在dart sdk升级后，可避免报错）；
++ 实时处理报错（error）和警告（warning）：Dart Analysis统计了所有报错和警告的具体信息；（好处：一则让代码程序更健壮，二则在dart
+  sdk升级后，可避免报错）；
 
 + 必要的简要的代码注释（不止是.dart文件，还包括pubspec.yaml）;
 
@@ -152,7 +172,9 @@ class TestHUDLogic extends BaseController {
 + 适当的换行，函数体之间、语句过长等；
 
 ## 手架项目说明
+
 ## 1.项目结构
+
 + base（父类），通常是一些wiget的封装，如BaseView
 + constant（常量），通常是一些app的域名、第三方sdk的key、button或text的样式
 + model（模型）通常是json模型，可配合插件jsonToDart自动生成
@@ -161,8 +183,11 @@ class TestHUDLogic extends BaseController {
 + utils(工具类)通常是一些api或三方库的简单封装
 + widget（widget封装）一些常用控件
 + middleware（路由权鉴）拦截登录校验弹窗逻辑等
+
 ## 2.设置主题色
+
 + 在main.dart里面设置GetMaterialApp
+
 <pre><code>
 GetMaterialApp(
     theme: ThemeService.lightTheme,
@@ -171,8 +196,10 @@ GetMaterialApp(
     ....
   )
 </code></pre>
+
 + 根据UI设计图的设计规范在AppThemes.dart(颜色)、
   ThemeService.dart(文字、按钮、导航栏配置)设置常量
+
 <pre><code>
    //AppThemes.dart
   ///general color name
@@ -209,7 +236,9 @@ GetMaterialApp(
     ......
   );
 </code></pre>
+
 + 开发规范
+
  <p>
 我们按照设计稿开发一般有三种情况：
  <p>
@@ -257,4 +286,37 @@ Text(
   style:AppThemes.textPrimaryColorDark
   ......
 );
+</code></pre>
+
+三.常规方案
+<pre><code>
+///字体使用CustomText
+CustomText(
+  'CustomText',
+  style: ThemeService().theme.textTheme.labelSmall,
+  textColorStyle: CustomTextColorStyle.panda,
+);
+</code></pre>
+
+<pre><code>
+///使用Text时使用CustomTextColorStyle.xxx.value设置颜色
+RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                text: 'RichText不一样的',
+                style: ThemeService()
+                    .theme
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: CustomTextColorStyle.primary.value),
+              ),
+                  TextSpan(
+                    text: '字体颜色',
+                    style: ThemeService()
+                        .theme
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: CustomTextColorStyle.grey.value),
+                  ),
+            ]));
 </code></pre>

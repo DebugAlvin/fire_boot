@@ -104,6 +104,25 @@ class TestTextPage extends BaseView<TestTextLogic> {
               textColorStyle: CustomTextColorStyle.normal,
               style: ThemeService().theme.textTheme.headlineSmall,
             ),
+            RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: 'RichText不一样的',
+                    style: ThemeService()
+                        .theme
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: CustomTextColorStyle.primary.value),
+                  ),
+                  TextSpan(
+                    text: '字体颜色',
+                    style: ThemeService()
+                        .theme
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: CustomTextColorStyle.grey.value),
+                  ),
+                ])),
           ],
         ),
       ),
