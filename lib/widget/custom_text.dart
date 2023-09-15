@@ -117,11 +117,12 @@ class CustomText extends StatelessWidget {
   }
 
   TextStyle? _getTextStyle(TextTheme textTheme) {
-    Color? textColor;
     final defaultTextStyle = style ?? textTheme.bodyMedium;
     if(textColorStyle != null) {
+      Color? textColor;
       textColor = textColorStyle!.value;
+      return defaultTextStyle?.copyWith(color: textColor!);
     }
-    return defaultTextStyle?.copyWith(color: textColor!);
+    return defaultTextStyle;
   }
 }
