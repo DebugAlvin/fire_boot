@@ -115,6 +115,12 @@ class ThemeService {
     return theme.colorScheme;
   }
 
+  ///获取当前的字体
+  TextTheme get textTheme {
+    return theme.textTheme;
+  }
+
+
   /// 获取用户暗黑模式设置的缓存配置
   int? _loadThemeFromBox() => _box.get(_key);
 
