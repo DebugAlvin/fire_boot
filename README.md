@@ -320,3 +320,6 @@ CustomText(
       ),
     ]));
 </code></pre>
+
+## 3.页面设置间距
+![image](https://github.com/DebugAlvin/fire_boot/blob/main/pading-1.png)
