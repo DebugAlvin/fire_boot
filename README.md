@@ -326,7 +326,7 @@ CustomText(
 <img src="https://github.com/DebugAlvin/fire_boot/blob/main/jianju-1.png" alt="pading 1" width="320">｜
 <img src="https://github.com/DebugAlvin/fire_boot/blob/main/jianju-2.png" alt="pading 1" width="320">
 
-一.页面左右间距
+一.页面上下左右间距
 <pre><code>
     return Container(
       padding: const EdgeInsets.all(AppValues.defaultPadding).copyWith(
