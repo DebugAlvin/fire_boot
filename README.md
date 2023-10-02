@@ -321,7 +321,28 @@ CustomText(
     ]));
 </code></pre>
 
-## 3.页面设置间距
+## 3.AppValues常用变量
 
 <img src="https://github.com/DebugAlvin/fire_boot/blob/main/jianju-1.png" alt="pading 1" width="320">｜
 <img src="https://github.com/DebugAlvin/fire_boot/blob/main/jianju-2.png" alt="pading 1" width="320">
+
+一.页面左右间距
+<pre><code>
+    return Container(
+      padding: const EdgeInsets.all(AppValues.defaultPadding).copyWith(
+          top: AppValues.largePadding, bottom: AppValues.largePadding),
+      child: ...,
+    );
+</code></pre>
+
+二.页面内控件之间的间距（图1）
+<pre><code>
+    return Column(
+      children: [
+        CustomBigMainButton(title: '按钮1',),
+        ///上下间距
+        SizedBox(height: AppValues.defaultMargin,),
+        CustomBigMainButton(title: '按钮2',),
+      ],
+    );
+</code></pre>
