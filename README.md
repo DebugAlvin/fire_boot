@@ -329,8 +329,8 @@ CustomText(
 一.页面上下左右间距
 <pre><code>
     return Container(
-      padding: const EdgeInsets.all(AppValues.defaultPadding).copyWith(
-          top: AppValues.largePadding, bottom: AppValues.largePadding),
+      padding: const EdgeInsets.all(AppValues.defaultMargin).copyWith(
+          top: AppValues.largeMargin, bottom: AppValues.largeMargin),
       child: ...,
     );
 </code></pre>
@@ -341,7 +341,7 @@ CustomText(
       children: [
         CustomBigMainButton(title: '按钮1',),
         ///上下间距
-        SizedBox(height: AppValues.defaultMargin,),
+        SizedBox(height: AppValues.defaultPadding,),
         CustomBigMainButton(title: '按钮2',),
       ],
     );
