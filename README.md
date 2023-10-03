@@ -326,23 +326,36 @@ CustomText(
 <img src="https://github.com/DebugAlvin/fire_boot/blob/main/jianju-1.png" alt="pading 1" width="320">｜
 <img src="https://github.com/DebugAlvin/fire_boot/blob/main/jianju-2.png" alt="pading 1" width="320">
 
-一.页面上下左右间距
+一.弹窗左右外间距（图1）
+如果需要给子组件设置一个相对于父组件的边距，如图1中给弹窗设置相对于父组件左右各16的边距，
+使用外边距margin:AppValues.defaultMargin=16
 <pre><code>
     return Container(
-      margin: const EdgeInsets.all(AppValues.defaultMargin).copyWith(
-          top: AppValues.largeMargin, bottom: AppValues.largeMargin),
+      margin: const EdgeInsets.symmetric(horizontal: AppValues.defaultMargin),
       child: ...,
     );
 </code></pre>
 
-二.页面内控件之间的间距（图1）
+二.页面内控件之间的外间距（图2）
+如果需要给各个控件之间设置一个间距，如图2中给忘记密码与电邮地址中间设置SizeBox(),
+使用AppValues.margin_12=12或者对应的AppValues.margin_xx
 <pre><code>
     return Column(
       children: [
         CustomBigMainButton(title: '按钮1',),
         ///上下间距
-        SizedBox(height: AppValues.defaultPadding,),
+        SizedBox(height: AppValues.margin_12,),
         CustomBigMainButton(title: '按钮2',),
       ],
     );
+</code></pre>
+
+三.页面内控件之内的内间距（图3）
+如果要给父组件里面的所有子布局设置一个统一的内边距，如图3中给标题栏内的text设置12的左右内边距，
+使用padding:AppValues.defalutPadding或对应的AppValues.padding_xx
+<pre><code>
+    return Container(
+            height: 40,
+            padding: EdgeInsets.symmetric(horizontal: AppValues.defaultPadding),
+            child:Text(...));
 </code></pre>
