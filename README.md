@@ -329,7 +329,7 @@ CustomText(
 一.页面上下左右间距
 <pre><code>
     return Container(
-      padding: const EdgeInsets.all(AppValues.defaultMargin).copyWith(
+      margin: const EdgeInsets.all(AppValues.defaultMargin).copyWith(
           top: AppValues.largeMargin, bottom: AppValues.largeMargin),
       child: ...,
     );
